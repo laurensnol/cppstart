@@ -4,7 +4,7 @@
 namespace cpp {
   /// \brief Adds two numbers.
   ///
-  /// This method adds two integer numbers and returns it's result.
+  /// This method adds two integers and returns it's result.
   ///
   /// \param x The first number to add.
   /// \param y The second number to add.
