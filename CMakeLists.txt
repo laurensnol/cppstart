@@ -12,7 +12,16 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+  include(CTest)
 endif()
+
+include(FetchContent)
 
 add_subdirectory(src)
 add_subdirectory(app)
+
+if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR MODERN_CMAKE_BUILD_TESTING)
+   AND BUILD_TESTING)
+    add_subdirectory(tests)
+endif()
