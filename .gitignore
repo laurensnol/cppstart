@@ -3,3 +3,6 @@ build/
 
 # Doxygen
 docs/html/
+
+# Clangd
+.cache/
