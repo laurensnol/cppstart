@@ -1,6 +1,9 @@
 # CMake
 build/
 
+# CTest
+Testing/
+
 # Doxygen
 docs/html/
 
