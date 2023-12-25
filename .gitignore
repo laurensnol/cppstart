@@ -7,8 +7,5 @@ build/
 # CTest
 Testing/
 
-# Doxygen
-docs/html/
-
 # Clangd
 .cache/
