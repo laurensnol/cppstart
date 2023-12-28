@@ -98,7 +98,7 @@ def main() -> None:
 
     if not args.keep:
         print("Deleting scripts/ directory...")
-        os.remove(script_dir)
+        os.remove(__file__)
 
     print("Done.")
 
