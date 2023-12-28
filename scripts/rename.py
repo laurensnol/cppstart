@@ -89,16 +89,16 @@ def main() -> None:
     with open(cmake_path, "r") as file:
         content = file.read()
         content = content \
-            .replace("cppstart", args.name) \
             .replace("cppstart template project.", args.description) \
-            .replace("https://github.com/laurensnol/cppstart", args.homepage)
+            .replace("https://github.com/laurensnol/cppstart", args.homepage) \
+            .replace("cppstart", args.name)
 
     with open(cmake_path, "w") as file:
         file.write(content)
 
     if not args.keep:
         print("Deleting scripts/ directory...")
-        pass
+        # TODO: Delete scripts directory
 
     print("Done.")
 
