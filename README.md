@@ -1,5 +1,7 @@
 # cppstart
 
+[![Build](https://github.com/laurensnol/cppstart/actions/workflows/build.yml/badge.svg)](https://github.com/laurensnol/cppstart/actions/workflows/build.yml)
+
 A simple C++ project entry point with CMake, tests, analysis, documentation and more.
 
 ## Features
