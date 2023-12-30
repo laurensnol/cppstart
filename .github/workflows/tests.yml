@@ -1,4 +1,4 @@
-name: Testss
+name: Tests
 on:
   pull_request:
   push:
@@ -23,9 +23,9 @@ jobs:
     
     - name: Build
       run: |
-        cmake --build build --target test
+        cmake --build build
 
     - name: Test
       run: |
         cd build
-        ctest
+        ctest -j 2 --output-on-failure --verbose
