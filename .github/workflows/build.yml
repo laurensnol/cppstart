@@ -1,0 +1,29 @@
+name: Build
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    name: 
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        compiler: [clang, gcc]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure
+        run: |
+          cmake -S . -B build -D CMAKE_CXX_COMPILER="${{matrix.compiler}}"
+    
+      - name: Build
+        run: |
+          cmake --build build --parallel
