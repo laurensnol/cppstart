@@ -94,6 +94,11 @@ def main() -> None:
     with open(cmake_path, "w") as file:
         file.write(content)
 
+    readme_path = os.path.join(root_dir, "README.md")
+    with open(readme_path, "w") as file:
+        print("Clearing README...")
+        file.write(f"# {args.name}\n{args.description}")
+
     if not args.keep:
         print("Deleting script directory...")
         os.remove(__file__)
