@@ -64,7 +64,6 @@ def main() -> None:
         os.path.join(root_dir, "include", args.name)
     )
 
-    # Update files
     files = [
         os.path.join("src", "some.cpp"),
         os.path.join("app", "main.cpp"),
@@ -84,7 +83,6 @@ def main() -> None:
             if content != "":
                 file.write(content)
 
-    # Update root CMakeLists.txt
     cmake_path = os.path.join(root_dir, "CMakeLists.txt")
     with open(cmake_path, "r") as file:
         content = file.read()
@@ -97,7 +95,7 @@ def main() -> None:
         file.write(content)
 
     if not args.keep:
-        print("Deleting scripts/ directory...")
+        print("Deleting script directory...")
         os.remove(__file__)
 
     print("Done.")
