@@ -23,6 +23,13 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     message(STATUS "Ccache not found")
   endif()
 
+  find_program(IWYU_PROGRAM include-what-you-use)
+  if(IWYU_PROGRAM)
+    set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE ${include-what-you-use})
+  else()
+    message(STATUS "include-what-you-use not found")
+  endif()
+
   find_package(Doxygen)
   if(Doxygen_FOUND)
     add_subdirectory(docs)
