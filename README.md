@@ -14,6 +14,7 @@ A simple C++ project entry point with CMake, tests, analysis, documentation and 
 - [x] Modern [CMake](https://cmake.org/)
 - [x] Testing using [Catch2](https://github.com/catchorg/Catch2)
 - [x] Documentation using [Doxygen](https://doxygen.nl/)
+- [ ] GitHub Actions for building, CodeQL and docs
 - [ ] Easy to use Docker image with the following dependencies and features
 set-up
 - [x] Static code analysis and linting using
@@ -21,13 +22,10 @@ set-up
   - [x] [Clang Static Analyzer](https://clang-analyzer.llvm.org/)
   - [x] [cppcheck](https://cppcheck.sourceforge.io/)
 - [x] Formatting using [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
+- [x] Include checking using [include-what-you-use](https://include-what-you-use.org/)
 - [x] Compiler cache using [Ccache](https://ccache.dev/)
-- [ ] Various GitHub Actions
 
 ## Dependencies
-
-*All dependencies (necessary and optional) can also be used without installation
-by developing inside a Docker container running the supplied* `Dockerfile`*.*
 
 **Necessary**
 
@@ -45,6 +43,7 @@ by developing inside a Docker container running the supplied* `Dockerfile`*.*
 - [Clang Static Analyzer](https://clang-analyzer.llvm.org/)
 - [cppcheck](https://cppcheck.sourceforge.io/)
 - [Ccache](https://ccache.dev/)
+- [include-what-you-use](https://include-what-you-use.org/)
 - [Docker](https://www.docker.com/)
 
 ## Getting Started
