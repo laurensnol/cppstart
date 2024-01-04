@@ -4,6 +4,9 @@
 # CMake
 build/
 
+# Ninja
+cmake-*/
+
 # CTest
 Testing/
 
