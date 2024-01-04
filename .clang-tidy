@@ -1,13 +1,13 @@
 ---
-Checks: "-*,
-         -bugprone-*,
-         -clang-analyzer-*,
-         -concurrency-*,
-         -cppcoreguidelines-*,
-         -google-*,
-         -llvm*,
-         -misc-*,
-         -modernize-*,
-         -performance-*,
-         -readability-*
+Checks: "*,
+        -bugprone-*,
+        -clang-analyzer-*,
+        -concurrency-*,
+        -cppcoreguidelines-*,
+        -google-*,
+        -llvm*,
+        -misc-*,
+        -modernize-*,
+        -performance-*,
+        -readability-*
 "
