@@ -16,6 +16,20 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   include(CTest)
 
+  find_program(CLANG_TIDY_PROGRAM clang-tidy)
+  if(CLANG_TIDY_PROGRAM)
+    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_PROGRAM};-p=${PROJECT_BINARY_DIR}")
+  else()
+    message(STATUS "clang-tidy not found")
+  endif()
+
+  find_program(CPPCHECK_PROGRAM cppcheck)
+  if(CPPCHECK_PROGRAM)
+    set(CMAKE_CXX_CPPCHECK ${CPPCHECK_PROGRAM} "-I${CMAKE_SOURCE_DIR}/include --enable=all")
+  else()
+    message(STATUS "cppcheck not found")
+  endif()
+
   find_program(CCACHE_PROGRAM ccache)
   if(CCACHE_PROGRAM)
     set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
