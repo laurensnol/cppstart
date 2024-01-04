@@ -2,49 +2,45 @@
 
 [![Build](https://github.com/laurensnol/cppstart/actions/workflows/build.yml/badge.svg)](https://github.com/laurensnol/cppstart/actions/workflows/build.yml)
 
-A simple C++ project entry point with CMake, tests, analysis, documentation and more.
+A simple C++ project entry point for libraries with CMake, tests, analysis,
+documentation and more.
 
 ## Features
 
-- [x] Simple structure
-  - [x] Headers in `include/` and sources in `src/`
-  - [x] Tests in `test/`
-  - [x] Documentation in `docs/`
-  - [x] App in `app/`
-- [x] Modern [CMake](https://cmake.org/)
-- [x] Testing using [Catch2](https://github.com/catchorg/Catch2)
-- [x] Documentation using [Doxygen](https://doxygen.nl/)
-- [ ] GitHub Actions for building, CodeQL and docs
-- [ ] Easy to use Docker image with the following dependencies and features
-set-up
-- [x] Static code analysis and linting using
-  - [x] [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)
-  - [x] [Clang Static Analyzer](https://clang-analyzer.llvm.org/)
-  - [x] [cppcheck](https://cppcheck.sourceforge.io/)
-- [x] Formatting using [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
-- [x] Include checking using [include-what-you-use](https://include-what-you-use.org/)
-- [x] Compiler cache using [Ccache](https://ccache.dev/)
+- Simple structure
+  - Headers in `include/`, sources in `src/`
+  - Tests in `test/`
+  - Documentation in `docs/`
+  - App in `app/`
+- Modern [CMake](https://cmake.org/)
+- Testing using [Catch2](https://github.com/catchorg/Catch2)
+- Documentation using [Doxygen](https://doxygen.nl/)
+- Static code analysis and linting using
+  - [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)
+  - [cppcheck](https://cppcheck.sourceforge.io/)
+- Formatting using [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
+- Include checking using [include-what-you-use](https://include-what-you-use.org/)
+- Compiler cache using [Ccache](https://ccache.dev/)
+- GitHub Action for CI
 
 ## Dependencies
 
 **Necessary**
 
+- [CMake](https://cmake.org/)
 - A C++ compiler:
   - [clang](https://clang.llvm.org/)
   - [gcc](https://gcc.gnu.org/)
   - [MSVC (Visual Studio)](https://visualstudio.microsoft.com/)
-- [CMake](https://cmake.org/)
 
 **Optional (but recommended)**
 
 - [Doxygen](https://doxygen.nl/)
 - [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)
-- [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
-- [Clang Static Analyzer](https://clang-analyzer.llvm.org/)
 - [cppcheck](https://cppcheck.sourceforge.io/)
-- [Ccache](https://ccache.dev/)
+- [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [include-what-you-use](https://include-what-you-use.org/)
-- [Docker](https://www.docker.com/)
+- [Ccache](https://ccache.dev/)
 
 ## Getting Started
 
