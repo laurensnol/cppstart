@@ -31,7 +31,6 @@ documentation and more.
 - A C++ compiler:
   - [clang](https://clang.llvm.org/)
   - [gcc](https://gcc.gnu.org/)
-  - [MSVC (Visual Studio)](https://visualstudio.microsoft.com/)
 
 **Optional (but recommended)**
 
