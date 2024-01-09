@@ -3,12 +3,10 @@
 
 # CMake
 build/
-
-# Ninja
 cmake-*/
-
-# CTest
 Testing/
+CMakeCache.txt
+CMakeUserPresets.json
 
 # Clangd
 .cache/
