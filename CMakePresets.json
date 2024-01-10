@@ -1,0 +1,64 @@
+{
+  "version": 6,
+  "configurePresets": [
+    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "ENABLE_COVERAGE": "OFF", "BUILD_DOCS": "OFF" } },
+    { "name": "debug-common", "inherits": "common", "hidden": true, "binaryDir": "build/debug", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "ENABLE_TOOLS": "ON" } },
+    { "name": "release-common", "inherits": "common", "hidden": true, "binaryDir": "build/release", "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" } },
+
+    { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "BUILD_DOCS": "ON" } },
+
+    { "name": "clang-common", "hidden": true, "cacheVariables": { "CMAKE_C_COMPILER": "/usr/bin/clang", "CMAKE_CXX_COMPILER": "/usr/bin/clang++" } },
+    { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"] },
+    { "name": "clang-release", "displayName": "Release (clang)", "description": "Release configuration using clang.", "inherits": ["release-common", "clang-common"] },
+    
+    { "name": "gcc-common", "inherits": "common", "hidden": true, "cacheVariables": { "CMAKE_C_COMPILER": "/usr/bin/gcc", "CMAKE_CXX_COMPILER": "/usr/bin/g++" } },
+    { "name": "gcc-debug", "displayName": "Debug (gcc)", "description": "Debug configuration using gcc.", "inherits": ["debug-common", "gcc-common"] },
+    { "name": "gcc-release", "displayName": "Release (gcc)", "description": "Release configuration using gcc.", "inherits": ["release-common", "gcc-common"] }
+  ],
+
+  "buildPresets": [
+    { "name": "common", "hidden": true, "jobs": 4 },
+    { "name": "debug-common", "hidden": true, "inherits": "common", "configuration": "Debug" },
+    { "name": "release-common", "hidden": true, "inherits": "common", "configuration": "Release" },
+
+    { "name": "docs", "displayName": "Documentation", "description": "Build the documentation using doxygen.", "configurePreset": "docs", "targets": ["docs"] },
+
+    { "name": "lib-common", "hidden": true, "targets": ["cppstart"] },
+    { "name": "lib-clang-debug", "hidden": true, "inherits": ["debug-common", "lib-common"], "configurePreset": "clang-debug" },
+    { "name": "lib-clang-release", "hidden": true, "inherits": ["release-common", "lib-common"], "configurePreset": "clang-release" },
+    { "name": "lib-gcc-debug", "hidden": true, "inherits": ["debug-common", "lib-common"], "configurePreset": "gcc-debug" },
+    { "name": "lib-gcc-release", "hidden": true, "inherits": ["release-common", "lib-common"], "configurePreset": "gcc-release" },
+
+    { "name": "lib-debug", "displayName": "Library Debug Build", "description": "Build the library with debug configuration.", "inherits": ["lib-clang-debug", "lib-gcc-debug"] },
+    { "name": "lib-release", "displayName": "Library Release Build", "description": "Build the app with release configuration.", "inherits": ["lib-clang-release", "lib-gcc-release"] },
+
+    { "name": "app-common", "hidden": true, "targets": ["app"] },
+    { "name": "app-clang-debug", "hidden": true, "inherits": ["debug-common", "app-common"], "configurePreset": "clang-debug" },
+    { "name": "app-clang-release", "hidden": true, "inherits": ["release-common", "app-common"], "configurePreset": "clang-release" },
+    { "name": "app-gcc-debug", "hidden": true, "inherits": ["debug-common", "app-common"], "configurePreset": "gcc-debug" },
+    { "name": "app-gcc-release", "hidden": true, "inherits": ["release-common", "app-common"], "configurePreset": "gcc-release" },
+
+    { "name": "app-debug", "displayName": "Library Debug Build", "description": "Build the app with debug configuration.", "inherits": ["app-clang-debug", "app-gcc-debug"] },
+    { "name": "app-release", "displayName": "Library Release Build", "description": "Build the app with release configuration.", "inherits": ["app-clang-release", "app-gcc-release"] },
+
+    { "name": "tests-common", "hidden": true, "targets": ["tests"] },
+    { "name": "tests-clang-debug", "hidden": true, "inherits": ["debug-common", "tests-common"], "configurePreset": "clang-debug" },
+    { "name": "tests-clang-release", "hidden": true, "inherits": ["release-common", "tests-common"], "configurePreset": "clang-release" },
+    { "name": "tests-gcc-debug", "hidden": true, "inherits": ["debug-common", "tests-common"], "configurePreset": "gcc-debug" },
+    { "name": "tests-gcc-release", "hidden": true, "inherits": ["release-common", "tests-common"], "configurePreset": "gcc-release" },
+
+    { "name": "tests-debug", "displayName": "Tests Debug Build", "description": "Build the tests with debug configuration.", "inherits": ["tests-clang-debug", "tests-gcc-debug"] },
+    { "name": "tests-release", "displayName": "Tests Release Build", "description": "Build the tests with release configuration.", "inherits": ["tests-clang-release", "tests-gcc-release"] }
+  ],
+
+  "testPresets": [
+    { "name": "all-common", "hidden": true, "execution": { "stopOnFailure": false } },
+    { "name": "all-clang-debug", "hidden": true, "inherits": "all-common", "configurePreset": "clang-debug" },
+    { "name": "all-clang-release", "hidden": true, "inherits": "all-common", "configurePreset": "clang-release" },
+    { "name": "all-gcc-debug", "hidden": true, "inherits": "all-common", "configurePreset": "gcc-debug" },
+    { "name": "all-gcc-release", "hidden": true, "inherits": "all-common", "configurePreset": "gcc-release" },
+
+    { "name": "all-debug", "displayName": "Run All Tests", "description": "Run all tests with debug configuration.", "inherits": ["all-clang-debug", "all-gcc-debug"] },
+    { "name": "all-release", "displayName": "Run All Tests", "description": "Run all tests with release configuration.", "inherits": ["all-clang-release", "all-gcc-release"] }
+  ]
+}
