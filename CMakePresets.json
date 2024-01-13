@@ -38,8 +38,8 @@
     { "name": "app-gcc-debug", "hidden": true, "inherits": ["debug-common", "app-common"], "configurePreset": "gcc-debug" },
     { "name": "app-gcc-release", "hidden": true, "inherits": ["release-common", "app-common"], "configurePreset": "gcc-release" },
 
-    { "name": "app-debug", "displayName": "Library Debug Build", "description": "Build the app with debug configuration.", "inherits": ["app-clang-debug", "app-gcc-debug"] },
-    { "name": "app-release", "displayName": "Library Release Build", "description": "Build the app with release configuration.", "inherits": ["app-clang-release", "app-gcc-release"] },
+    { "name": "app-debug", "displayName": "App Debug Build", "description": "Build the app with debug configuration.", "inherits": ["app-clang-debug", "app-gcc-debug"] },
+    { "name": "app-release", "displayName": "App Release Build", "description": "Build the app with release configuration.", "inherits": ["app-clang-release", "app-gcc-release"] },
 
     { "name": "tests-common", "hidden": true, "targets": ["tests"] },
     { "name": "tests-clang-debug", "hidden": true, "inherits": ["debug-common", "tests-common"], "configurePreset": "clang-debug" },
