@@ -4,60 +4,46 @@ project(
   VERSION 1.0
   DESCRIPTION "cppstart template project."
   HOMEPAGE_URL "https://github.com/laurensnol/cppstart"
-  LANGUAGES CXX)
+  LANGUAGES C CXX)
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  set(CMAKE_CXX_EXTENSIONS OFF)
-  set(CMAKE_CXX_STANDARD 20)
-  set(CMAKE_CXX_STANDARD_REQUIRED ON)
-  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-  include(CTest)
-
-  find_program(CLANG_TIDY_PROGRAM clang-tidy)
-  if(CLANG_TIDY_PROGRAM)
-    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_PROGRAM};-p=${PROJECT_BINARY_DIR}")
-  else()
-    message(STATUS "clang-tidy not found")
-  endif()
-
-  find_program(CPPCHECK_PROGRAM cppcheck)
-  if(CPPCHECK_PROGRAM)
-    set(CMAKE_CXX_CPPCHECK ${CPPCHECK_PROGRAM} "-I${CMAKE_SOURCE_DIR}/include --enable=all")
-  else()
-    message(STATUS "cppcheck not found")
-  endif()
-
-  find_program(CCACHE_PROGRAM ccache)
-  if(CCACHE_PROGRAM)
-    set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
-  else()
-    message(STATUS "Ccache not found")
-  endif()
-
-  find_program(IWYU_PROGRAM include-what-you-use)
-  if(IWYU_PROGRAM)
-    set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE ${include-what-you-use})
-  else()
-    message(STATUS "include-what-you-use not found")
-  endif()
-
-  find_package(Doxygen)
-  if(Doxygen_FOUND)
-    add_subdirectory(docs)
-  else()
-    message(STATUS "Doxygen not found")
-  endif()
+# Prevent in-source builds
+if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
+  message(FATAL_ERROR "In-source builds are not allowed")
 endif()
 
-include(FetchContent)
+# Since building documentation doesn't require building any targets, we can
+# immediately return if BUILD_DOCS is ON
+if(BUILD_DOCS)
+  add_subdirectory(docs)
+  return()
+endif()
 
-add_subdirectory(src)
+# Only include tests if top level
+if(PROJECT_IS_TOP_LEVEL)
+  include(CTest)
+  include(FetchContent)
+
+  add_subdirectory(test)
+endif()
+
+add_subdirectory(src ${PROJECT_NAME})
 add_subdirectory(app)
 
-if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR MODERN_CMAKE_BUILD_TESTING)
-   AND BUILD_TESTING)
-    add_subdirectory(test)
+# Apply debug or release flags (if set)
+# When creating new CMake presets, ensure that there are no conflicting flags
+# set in DEBUG_FLAGS and RELEASE_FLAGS
+target_compile_options(${PROJECT_NAME} PRIVATE "${DEBUG_FLAGS}")
+target_compile_options(${PROJECT_NAME} PRIVATE "${RELEASE_FLAGS}")
+
+# Apply coverage flags (if set)
+target_compile_options(${PROJECT_NAME} PRIVATE "${COVERAGE_OPTIONS}")
+target_link_libraries(${PROJECT_NAME} PRIVATE "${COVERAGE_LIBRARIES}")
+
+if(ENABLE_TOOLS)
+  message(STATUS "Enabling tools")
+
+  # TODO: Add clang-tidy
+  # TODO: Add cppcheck
+  # TODO: Add ccache
+  # TODO: Add iwyu
 endif()
