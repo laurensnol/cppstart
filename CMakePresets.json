@@ -1,22 +1,22 @@
 {
   "version": 6,
   "configurePresets": [
-    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "ENABLE_COVERAGE": "OFF", "BUILD_DOCS": "OFF" } },
+    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "BUILD_DOCS": "OFF", "COVERAGE_OPTIONS": null, "COVERAGE_LIBRARIES": null } },
     { "name": "debug-common", "inherits": "common", "hidden": true, "binaryDir": "build/debug", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "ENABLE_TOOLS": "ON" } },
     { "name": "release-common", "inherits": "common", "hidden": true, "binaryDir": "build/release", "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" } },
-    { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage", "cacheVariables": { "ENABLE_COVERAGE": "ON" } },
+    { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage" },
 
     { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "BUILD_DOCS": "ON" } },
 
     { "name": "clang-common", "hidden": true, "cacheVariables": { "CMAKE_C_COMPILER": "/usr/bin/clang", "CMAKE_CXX_COMPILER": "/usr/bin/clang++" } },
     { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"] },
     { "name": "clang-release", "displayName": "Release (clang)", "description": "Release configuration using clang.", "inherits": ["release-common", "clang-common"] },
-    { "name": "clang-coverage", "displayName": "Coverage (clang)", "description": "Coverage configuration using clang.", "inherits": ["coverage-common", "clang-common"] },
+    { "name": "clang-coverage", "displayName": "Coverage (clang)", "description": "Coverage configuration using clang.", "inherits": ["coverage-common", "clang-common"], "cacheVariables": { "COVERAGE_OPTIONS": "-fprofile-instr-generate;-fcoverage-mapping;", "COVERAGE_LIBRARIES": "-fprofile-instr-generate;" } },
 
     { "name": "gcc-common", "inherits": "common", "hidden": true, "cacheVariables": { "CMAKE_C_COMPILER": "/usr/bin/gcc", "CMAKE_CXX_COMPILER": "/usr/bin/g++" } },
     { "name": "gcc-debug", "displayName": "Debug (gcc)", "description": "Debug configuration using gcc.", "inherits": ["debug-common", "gcc-common"] },
     { "name": "gcc-release", "displayName": "Release (gcc)", "description": "Release configuration using gcc.", "inherits": ["release-common", "gcc-common"] },
-    { "name": "gcc-coverage", "displayName": "Coverage (gcc)", "description": "Coverage configuration using gcc.", "inherits": ["coverage-common", "gcc-common"] }
+    { "name": "gcc-coverage", "displayName": "Coverage (gcc)", "description": "Coverage configuration using gcc.", "inherits": ["coverage-common", "gcc-common"], "cacheVariables": { "COVERAGE_LIBRARIES": "--coverage;", "COVERAGE_OPTIONS": "--coverage;" } }
   ],
 
   "buildPresets": [
