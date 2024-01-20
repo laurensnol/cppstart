@@ -29,14 +29,8 @@ endif()
 add_subdirectory(src ${PROJECT_NAME})
 add_subdirectory(app)
 
-# Apply debug or release flags (if set)
-# When creating new CMake presets, ensure that there are no conflicting flags
-# set in DEBUG_FLAGS and RELEASE_FLAGS
-target_compile_options(${PROJECT_NAME} PRIVATE "${DEBUG_FLAGS}")
-target_compile_options(${PROJECT_NAME} PRIVATE "${RELEASE_FLAGS}")
-
-# Apply coverage flags (if set)
-target_compile_options(${PROJECT_NAME} PRIVATE "${COVERAGE_OPTIONS}")
+# Apply set compiler flags
+target_compile_options(${PROJECT_NAME} PRIVATE "${DEBUG_FLAGS}${RELEASE_FLAGS}${COVERAGE_OPTIONS}")
 target_link_libraries(${PROJECT_NAME} PRIVATE "${COVERAGE_LIBRARIES}")
 
 if(ENABLE_TOOLS)
