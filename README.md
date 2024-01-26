@@ -11,7 +11,7 @@ documentation and more.
   - Headers in `include/`, sources in `src/`
   - Tests in `test/`
   - Documentation in `docs/`
-  - App in `app/`
+  - Example in `example/`
 - Modern [CMake](https://cmake.org/)
 - Testing using [Catch2](https://github.com/catchorg/Catch2)
 - Documentation using [Doxygen](https://doxygen.nl/)
@@ -19,7 +19,8 @@ documentation and more.
   - [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)
   - [cppcheck](https://cppcheck.sourceforge.io/)
 - Formatting using [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
-- Include checking using [include-what-you-use](https://include-what-you-use.org/)
+- Include checking using
+[include-what-you-use](https://include-what-you-use.org/)
 - Compiler cache using [Ccache](https://ccache.dev/)
 - GitHub Action for CI
 
@@ -50,8 +51,9 @@ There are two ways to use this repository as a template for a new C++ project.
 Click the `Use this template` button at the top of this page and enter a
 repository name. Then, wait for the GitHub Actions to finish.
 
-*Note that this will mark your repository as *`generated from laurensnol/cppstart`
-*which, as of December 2023 can **not** be removed.*
+*Note that this will mark your repository as* 
+`generated from laurensnol/cppstart` *which, as of December 2023 can **not** be
+removed.*
 
 ### Cloning
 
@@ -79,39 +81,41 @@ You may now optionally add your new project to GitHub:
 
 ## Building, Running & Testing
 
-Before building any target, the build has to be configured using
-`cmake -S . -B build`.
+*This project is using
+[CMake Presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)
+for configuring, building and testing.*
 
-### Library
+### Configuration
 
-To build the library, run `cmake --build build -t cppstart` *(replace with your
-library's name)*. The built library can then be found in `/build/src/`.
+Before building any target(s), the project has to be configured using any of the
+available presets, which can be listed with `cmake --list-presets`.
 
-### App
+To configure, run `cmake --preset [PRESET NAME]`.
 
-To build and run the app:
+### Building
 
-```sh
-cmake --build build -t app
-./build/app/app
-```
+After configuring the project, you can build one or more targets by using a
+preset listed by `cmake --build --list-presets` with
+`cmake --build --preset [PRESET NAME]`.
+
+**Note that some presets rely on specific configure presets. E.g. building**
+`lib-debug` **requires a** `*-debug(-no-tools)` **configuration to exist**.
 
 ### Testing
 
-You can build and run tests using `ctest`:
+Building and running tests is possible with any configuration preset but
+requires any `tests-*` build preset to be built.
 
-```sh
-cmake --build build -t tests
-cd build/
-ctest
-```
+Running tests is then possible by using `ctest --preset [PRESET NAME]` and any
+test preset listed by `ctest --list-presets`
 
 ### Documentation
 
-Building documentation requires [Doxygen](https://doxygen.nl/).
+*Building documentation requires [Doxygen](https://doxygen.nl/).*
 
-To build the documentation, run `cmake --build build -t docs`. The generated
-documentation can then be found in `build/docs/html`.
+To build the documentation, configure your project with the `docs` preset:
+`cmake --preset docs` and build it with `cmake --build --preset docs`. The
+output Doxygen HTML files can be found in `build/docs/docs/html`.
 
 Refer to the [CMake FindDoxygen documentation](https://cmake.org/cmake/help/latest/module/FindDoxygen.html)
 for further information.
