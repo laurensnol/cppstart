@@ -1,5 +1,7 @@
 #include <cppstart/some.hpp>
 
 namespace cpp {
-int add(int x, int y) { return x + y; }
+constexpr auto add(int first, int second) noexcept -> int {
+  return first + second;
+}
 }  // namespace cpp

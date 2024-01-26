@@ -9,7 +9,7 @@ namespace cpp {
 /// \param x The first number to add.
 /// \param y The second number to add.
 /// \return The result of adding the two values.
-int add(int x, int y);
+constexpr auto add(int first, int second) noexcept -> int;
 }  // namespace cpp
 
 #endif
