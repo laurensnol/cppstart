@@ -6,7 +6,7 @@
     { "name": "release-common", "inherits": "common", "hidden": true, "binaryDir": "build/release", "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" } },
     { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage" },
 
-    { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "BUILD_DOCS": "ON" } },
+    { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF", "BUILD_DOCS": "ON" } },
 
     { "name": "clang-common", "hidden": true, "cacheVariables": { "CMAKE_C_COMPILER": "/usr/bin/clang", "CMAKE_CXX_COMPILER": "/usr/bin/clang++" } },
     { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "DEBUG_FLAGS": "-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;-Werror;" } },
