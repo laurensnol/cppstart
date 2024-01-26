@@ -14,7 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        compiler: [clang++, g++]
+        compiler: [clang, gcc]
+        config: [debug, release]
 
     steps:
       - name: Checkout
@@ -27,8 +28,8 @@ jobs:
 
       - name: Configure
         run: |
-          cmake -S . -B build -D CMAKE_CXX_COMPILER="${{matrix.compiler}}"
-    
+          cmake --preset "${{matrix.compiler}}-${{matrix.config}}"
+
       - name: Build
         run: |
-          cmake --build build --parallel
+          cmake --build --preset "app-${{matrix.config}}"
