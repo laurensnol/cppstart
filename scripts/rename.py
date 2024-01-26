@@ -66,7 +66,7 @@ def main() -> None:
 
     files = [
         os.path.join("src", "some.cpp"),
-        os.path.join("app", "main.cpp"),
+        os.path.join("example", "main.cpp"),
         os.path.join("test", "some_test.cpp")
     ]
 
@@ -100,7 +100,7 @@ def main() -> None:
         file.write(f"# {args.name}\n{args.description}")
 
     if not args.keep:
-        print("Deleting script directory...")
+        print("Deleting script...")
         os.remove(__file__)
 
     print("Done.")

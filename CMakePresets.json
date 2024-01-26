@@ -36,16 +36,16 @@
     { "name": "lib-gcc-release", "hidden": true, "inherits": ["release-common", "lib-common"], "configurePreset": "gcc-release" },
 
     { "name": "lib-debug", "displayName": "Library Debug Build", "description": "Build the library with debug configuration.", "inherits": ["lib-clang-debug", "lib-gcc-debug"] },
-    { "name": "lib-release", "displayName": "Library Release Build", "description": "Build the app with release configuration.", "inherits": ["lib-clang-release", "lib-gcc-release"] },
+    { "name": "lib-release", "displayName": "Library Release Build", "description": "Build the library with release configuration.", "inherits": ["lib-clang-release", "lib-gcc-release"] },
 
-    { "name": "app-common", "hidden": true, "targets": ["app"] },
-    { "name": "app-clang-debug", "hidden": true, "inherits": ["debug-common", "app-common"], "configurePreset": "clang-debug" },
-    { "name": "app-clang-release", "hidden": true, "inherits": ["release-common", "app-common"], "configurePreset": "clang-release" },
-    { "name": "app-gcc-debug", "hidden": true, "inherits": ["debug-common", "app-common"], "configurePreset": "gcc-debug" },
-    { "name": "app-gcc-release", "hidden": true, "inherits": ["release-common", "app-common"], "configurePreset": "gcc-release" },
+    { "name": "example-common", "hidden": true, "targets": ["example"] },
+    { "name": "example-clang-debug", "hidden": true, "inherits": ["debug-common", "example-common"], "configurePreset": "clang-debug" },
+    { "name": "example-clang-release", "hidden": true, "inherits": ["release-common", "example-common"], "configurePreset": "clang-release" },
+    { "name": "example-gcc-debug", "hidden": true, "inherits": ["debug-common", "example-common"], "configurePreset": "gcc-debug" },
+    { "name": "example-gcc-release", "hidden": true, "inherits": ["release-common", "example-common"], "configurePreset": "gcc-release" },
 
-    { "name": "app-debug", "displayName": "App Debug Build", "description": "Build the app with debug configuration.", "inherits": ["app-clang-debug", "app-gcc-debug"] },
-    { "name": "app-release", "displayName": "App Release Build", "description": "Build the app with release configuration.", "inherits": ["app-clang-release", "app-gcc-release"] },
+    { "name": "example-debug", "displayName": "Example Debug Build", "description": "Build the example with debug configuration.", "inherits": ["example-clang-debug", "example-gcc-debug"] },
+    { "name": "example-release", "displayName": "Example Release Build", "description": "Build the example with release configuration.", "inherits": ["example-clang-release", "example-gcc-release"] },
 
     { "name": "tests-common", "hidden": true, "targets": ["tests"] },
     { "name": "tests-clang-debug", "hidden": true, "inherits": ["debug-common", "tests-common"], "configurePreset": "clang-debug" },

@@ -27,7 +27,7 @@ if(PROJECT_IS_TOP_LEVEL)
 endif()
 
 add_subdirectory(src ${PROJECT_NAME})
-add_subdirectory(app)
+add_subdirectory(example)
 
 # Apply set compiler flags
 target_compile_options(${PROJECT_NAME} PRIVATE ${DEBUG_FLAGS}${RELEASE_FLAGS}${COVERAGE_OPTIONS})
@@ -94,7 +94,7 @@ if(ENABLE_TOOLS)
     message(STATUS "Ccache not found")
   endif()
 
-  set_target_properties(${PROJECT_NAME} app PROPERTIES
+  set_target_properties(${PROJECT_NAME} example PROPERTIES
     CXX_CLANG_TIDY        "${CLANG_TIDY_PROPERTIES}"
     CXX_CPPCHECK          "${CPPCHECK_PROPERTIES}"
     CXX_IWYU              "${IWYU_PROPERTIES}"
