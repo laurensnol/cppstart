@@ -33,6 +33,16 @@ add_subdirectory(app)
 target_compile_options(${PROJECT_NAME} PRIVATE ${DEBUG_FLAGS}${RELEASE_FLAGS}${COVERAGE_OPTIONS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${COVERAGE_LIBRARIES})
 
+# Create a symlink for compile_commands.json to be found by clangd.
+if (CMAKE_EXPORT_COMPILE_COMMANDS)
+  message(STATUS "Creating symlink for compile_commands.json")
+
+  file(CREATE_LINK
+    "${CMAKE_BINARY_DIR}/compile_commands.json"
+    "${CMAKE_SOURCE_DIR}/build/compile_commands.json"
+    SYMBOLIC)
+endif()
+
 if(ENABLE_TOOLS)
   message(STATUS "Enabling tools")
 
@@ -50,9 +60,9 @@ if(ENABLE_TOOLS)
   set(CPPCHECK_PROPERTIES "")
   find_program(CPPCHECK_PROGRAM cppcheck)
   if(CPPCHECK_PROGRAM)
-    # NOTE: Suppress "unusedFunction" here to avoid false positives since
-    #       cppcheck will check every file individually.
-    #       Truly unused functions will be caught by clang-tidy.
+    # Suppress "unusedFunction" here to avoid false positives since cppcheck
+    # will check every file individually. Truly unused functions will be caught
+    # by clang-tidy.
     list(APPEND CPPCHECK_PROPERTIES
       ${CPPCHECK_PROGRAM}
       "--quiet"
