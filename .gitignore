@@ -11,3 +11,6 @@ CMakeUserPresets.json
 
 # Clangd
 .cache/
+
+# VSCode
+.vscode/
