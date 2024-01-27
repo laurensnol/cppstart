@@ -1,7 +1,7 @@
 {
   "version": 6,
   "configurePresets": [
-    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "BUILD_DOCS": "OFF", "DEBUG_FLAGS": null, "RELEASE_FLAGS": null, "COVERAGE_OPTIONS": null, "COVERAGE_LIBRARIES": null } },
+    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "BUILD_DOCS": "OFF", "COMPILER_FLAGS": null, "COVERAGE_OPTIONS": null, "COVERAGE_LIBRARIES": null } },
     { "name": "debug-common", "inherits": "common", "hidden": true, "binaryDir": "build/debug", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "ENABLE_TOOLS": "ON" } },
     { "name": "release-common", "inherits": "common", "hidden": true, "binaryDir": "build/release", "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" } },
     { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage" },
@@ -9,13 +9,13 @@
     { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF", "BUILD_DOCS": "ON" } },
 
     { "name": "clang-common", "hidden": true, "cacheVariables": { "CMAKE_C_COMPILER": "clang", "CMAKE_CXX_COMPILER": "clang++" } },
-    { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "DEBUG_FLAGS": "-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;-Werror;" } },
+    { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "COMPILER_FLAGS": "-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;-Werror;" } },
     { "name": "clang-debug-no-tools", "displayName": "Debug Wihout Tools (clang)", "description": "Debug configuration without tools using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "ENABLE_TOOLS": "OFF" } },
-    { "name": "clang-release", "displayName": "Release (clang)", "description": "Release configuration using clang.", "inherits": ["release-common", "clang-common"], "cacheVariables": { "RELEASE_FLAGS": "-O3;" } },
+    { "name": "clang-release", "displayName": "Release (clang)", "description": "Release configuration using clang.", "inherits": ["release-common", "clang-common"], "cacheVariables": { "COMPILER_FLAGS": "-O3;" } },
     { "name": "clang-coverage", "displayName": "Coverage (clang)", "description": "Coverage configuration using clang.", "inherits": ["coverage-common", "clang-common"], "cacheVariables": { "COVERAGE_OPTIONS": "-fprofile-instr-generate;-fcoverage-mapping;", "COVERAGE_LIBRARIES": "-fprofile-instr-generate;" } },
 
     { "name": "gcc-common", "inherits": "common", "hidden": true, "cacheVariables": { "CMAKE_C_COMPILER": "gcc", "CMAKE_CXX_COMPILER": "g++" } },
-    { "name": "gcc-debug", "displayName": "Debug (gcc)", "description": "Debug configuration using gcc.", "inherits": ["debug-common", "gcc-common"], "cacheVariables": { "DEBUG_FLAGS": "-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;-Werror;" } },
+    { "name": "gcc-debug", "displayName": "Debug (gcc)", "description": "Debug configuration using gcc.", "inherits": ["debug-common", "gcc-common"], "cacheVariables": { "COMPILER_FLAGS": "-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;-Werror;" } },
     { "name": "gcc-debug-no-tools", "displayName": "Debug Wihout Tools (gcc)", "description": "Debug configuration without tools using gcc.", "inherits": ["debug-common", "gcc-common"], "cacheVariables": { "ENABLE_TOOLS": "OFF" } },
     { "name": "gcc-release", "displayName": "Release (gcc)", "description": "Release configuration using gcc.", "inherits": ["release-common", "gcc-common"], "cacheVariables": { "RELEASE_FLAGS": "-O3;" } },
     { "name": "gcc-coverage", "displayName": "Coverage (gcc)", "description": "Coverage configuration using gcc.", "inherits": ["coverage-common", "gcc-common"], "cacheVariables": { "COVERAGE_LIBRARIES": "--coverage;", "COVERAGE_OPTIONS": "--coverage;" } }

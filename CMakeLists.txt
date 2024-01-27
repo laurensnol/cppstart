@@ -30,7 +30,7 @@ add_subdirectory(src ${PROJECT_NAME})
 add_subdirectory(example)
 
 # Apply set compiler flags
-target_compile_options(${PROJECT_NAME} PRIVATE ${DEBUG_FLAGS}${RELEASE_FLAGS}${COVERAGE_OPTIONS})
+target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILER_FLAGS}${COVERAGE_OPTIONS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${COVERAGE_LIBRARIES})
 
 # Create a symlink for compile_commands.json to be found by clangd.
