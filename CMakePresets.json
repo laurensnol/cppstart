@@ -66,8 +66,8 @@
     { "name": "lib-mingw-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "lib-common"], "configurePreset": "mingw-debug" },
     { "name": "lib-mingw-release", "hidden": true, "inherits": ["windows-common", "release-common", "lib-common"], "configurePreset": "mingw-release" },
 
-    { "name": "lib-debug", "displayName": "Library Debug Build", "description": "Build the library with debug configuration.", "inherits": ["lib-clang-debug", "lib-gcc-debug", "lib-msvc-debug"] },
-    { "name": "lib-release", "displayName": "Library Release Build", "description": "Build the library with release configuration.", "inherits": ["lib-clang-release", "lib-gcc-release", "lib-msvc-debug"] },
+    { "name": "lib-debug", "displayName": "Library Debug Build", "description": "Build the library with debug configuration.", "inherits": ["lib-clang-debug", "lib-gcc-debug", "lib-msvc-debug", "lib-clang-cl-debug", "lib-mingw-debug"] },
+    { "name": "lib-release", "displayName": "Library Release Build", "description": "Build the library with release configuration.", "inherits": ["lib-clang-release", "lib-gcc-release", "lib-msvc-release", "lib-clang-cl-release", "lib-mingw-release"] },
 
     { "name": "example-common", "hidden": true, "targets": ["example"] },
     { "name": "example-clang-debug", "hidden": true, "inherits": ["unixlike-common", "debug-common", "example-common"], "configurePreset": "clang-debug" },
@@ -81,8 +81,8 @@
     { "name": "example-mingw-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "example-common"], "configurePreset": "mingw-debug" },
     { "name": "example-mingw-release", "hidden": true, "inherits": ["windows-common", "release-common", "example-common"], "configurePreset": "mingw-release" },
 
-    { "name": "example-debug", "displayName": "Example Debug Build", "description": "Build the example with debug configuration.", "inherits": ["example-clang-debug", "example-gcc-debug"] },
-    { "name": "example-release", "displayName": "Example Release Build", "description": "Build the example with release configuration.", "inherits": ["example-clang-release", "example-gcc-release"] },
+    { "name": "example-debug", "displayName": "Example Debug Build", "description": "Build the example with debug configuration.", "inherits": ["example-clang-debug", "example-gcc-debug", "example-msvc-debug", "example-clang-cl-debug", "example-mingw-debug"] },
+    { "name": "example-release", "displayName": "Example Release Build", "description": "Build the example with release configuration.", "inherits": ["example-clang-release", "example-gcc-release", "example-msvc-release", "example-clang-cl-release", "example-mingw-release"] },
 
     { "name": "tests-common", "hidden": true, "targets": ["tests"] },
     { "name": "tests-clang-debug", "hidden": true, "inherits": ["unixlike-common", "debug-common", "tests-common"], "configurePreset": "clang-debug" },
@@ -101,9 +101,9 @@
     { "name": "tests-mingw-release", "hidden": true, "inherits": ["windows-common", "release-common", "tests-common"], "configurePreset": "mingw-release" },
     { "name": "tests-mingw-coverage", "hidden": true, "inherits": ["windows-common", "coverage-common", "tests-common"], "configurePreset": "mingw-coverage" },
 
-    { "name": "tests-debug", "displayName": "Tests Debug Build", "description": "Build the tests with debug configuration.", "inherits": ["tests-clang-debug", "tests-gcc-debug"] },
-    { "name": "tests-release", "displayName": "Tests Release Build", "description": "Build the tests with release configuration.", "inherits": ["tests-clang-release", "tests-gcc-release"] },
-    { "name": "tests-coverage", "displayName": "Tests Coverage Build", "description": "Build the tests with coverage configuration.", "inherits": ["tests-clang-coverage", "tests-gcc-coverage"] }
+    { "name": "tests-debug", "displayName": "Tests Debug Build", "description": "Build the tests with debug configuration.", "inherits": ["tests-clang-debug", "tests-gcc-debug", "tests-msvc-debug", "tests-clang-cl-debug", "tests-mingw-debug"] },
+    { "name": "tests-release", "displayName": "Tests Release Build", "description": "Build the tests with release configuration.", "inherits": ["tests-clang-release", "tests-gcc-release", "tests-gcc-release", "tests-msvc-release", "tests-clang-cl-release", "tests-mingw-release"] },
+    { "name": "tests-coverage", "displayName": "Tests Coverage Build", "description": "Build the tests with coverage configuration.", "inherits": ["tests-clang-coverage", "tests-gcc-coverage", "tests-gcc-coverage", "tests-msvc-coverage", "tests-clang-cl-coverage", "tests-mingw-coverage"] }
   ],
 
   "testPresets": [
