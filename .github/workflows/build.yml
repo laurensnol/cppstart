@@ -8,15 +8,27 @@ on:
 
 jobs:
   build:
-    name: 
-    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        compiler: [clang, gcc]
+        os: [ubuntu-latest, macos-latest, windows-latest]
         config: [debug, release]
-
+        include:
+          - os: ubuntu-latest
+            compiler: clang
+          - os: ubuntu-latest
+            compiler: gcc
+          - os: macos-latest
+            compiler: clang
+          - os: macos-latest
+            compiler: gcc
+          - os: windows-latest
+            compiler: msvc
+          - os: windows-latest
+            compiler: clang-cl
+          - os: windows-latest
+            compiler: mingw
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
