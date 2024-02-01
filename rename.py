@@ -55,8 +55,7 @@ def main() -> None:
               "set it manually.")
         return
 
-    script_dir = os.path.dirname(__file__)
-    root_dir = os.path.dirname(script_dir)
+    root_dir = os.path.dirname(__file__)
 
     print("Renaming include directory...")
     os.rename(
@@ -67,7 +66,8 @@ def main() -> None:
     files = [
         os.path.join("src", "some.cpp"),
         os.path.join("example", "main.cpp"),
-        os.path.join("test", "some_test.cpp")
+        os.path.join("test", "some_test.cpp"),
+        "CMakePresets.json"
     ]
 
     for file in files:
