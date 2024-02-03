@@ -13,18 +13,14 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         config: [debug, release]
-        compiler: [clang, gcc, msvc, clang-cl, mingw]
+        compiler: [clang, gcc, msvc, mingw]
         exclude:
           - os: ubuntu-latest
             compiler: msvc
           - os: ubuntu-latest
-            compiler: clang-cl
-          - os: ubuntu-latest
             compiler: mingw
           - os: macos-latest
             compiler: msvc
-          - os: macos-latest
-            compiler: clang-cl
           - os: macos-latest
             compiler: mingw
           - os: windows-latest
@@ -41,18 +37,20 @@ jobs:
         with:
           os: ${{ matrix.os }}
 
+      - name: Dependencies
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: ${{ matrix.compiler }}
+          ninja: true
+          cmake: true
+          clangtidy: true
+          cppcheck: true
+          ccache: true
+
       - name: Configure
         run: |
-          cmake --preset "${{matrix.compiler}}-${{matrix.config}}"
+          cmake --preset '${{matrix.compiler}}-${{matrix.config}}'
 
-      - name: Unix: Build
-        if: runner.os != "Windows"
+      - name: Build
         run: |
-          cmake --build --preset "example-${{matrix.config}}"
-
-      - name: Windows: Build
-        if: runner.os == "Windows"
-        uses: msys2/setup-msys2@v2
-        shell: msys2 {0}
-        run: |
-          cmake --build --preset "example-${{matrix.config}}"
+          cmake --build --preset 'example-${{matrix.config}}'

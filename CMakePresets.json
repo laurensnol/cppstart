@@ -1,7 +1,7 @@
 {
   "version": 6,
   "configurePresets": [
-    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "BUILD_DOCS": "OFF", "COMPILER_FLAGS": null, "COVERAGE_OPTIONS": null, "COVERAGE_LIBRARIES": null } },
+    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_GENERATOR": "Ninja", "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "BUILD_DOCS": "OFF", "COMPILER_FLAGS": null, "COVERAGE_OPTIONS": null, "COVERAGE_LIBRARIES": null } },
 
     { "name": "unixlike-common", "hidden": true, "inherits": "common", "condition": { "type": "inList", "string": "${hostSystemName}", "list": ["Linux", "Darwin"] } },
     { "name": "windows-common", "hidden": true, "inherits": "common", "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" } },
@@ -29,7 +29,7 @@
     { "name": "msvc-debug-no-tools", "displayName": "Debug Wihout Tools (msvc)", "description": "Debug configuration without tools using msvc.", "inherits": ["debug-common", "msvc-common"], "cacheVariables": { "ENABLE_TOOLS": "OFF" } },
     { "name": "msvc-release", "displayName": "Release (msvc)", "description": "Release configuration using msvc.", "inherits": ["release-common", "msvc-common"], "cacheVariables": { "COMPILER_FLAGS": "" } },
     { "name": "msvc-coverage", "displayName": "Coverage (msvc)", "description": "Coverage configuration using msvc.", "inherits": ["coverage-common", "msvc-common"], "cacheVariables": { "COVERAGE_OPTIONS": "", "COVERAGE_LIBRARIES": "" } },
-    
+
     { "name": "mingw-common", "hidden": true, "inherits": "windows-common", "cacheVariables": { "CMAKE_C_COMPILER": "gcc", "CMAKE_CXX_COMPILER": "g++" } },
     { "name": "mingw-debug", "displayName": "Debug (mingw)", "description": "Debug configuration using mingw.", "inherits": ["debug-common", "mingw-common"], "cacheVariables": { "COMPILER_FLAGS": "" } },
     { "name": "mingw-debug-no-tools", "displayName": "Debug Wihout Tools (mingw)", "description": "Debug configuration without tools using mingw.", "inherits": ["debug-common", "mingw-common"], "cacheVariables": { "ENABLE_TOOLS": "OFF" } },
