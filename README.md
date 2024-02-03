@@ -29,6 +29,7 @@ documentation and more.
 **Necessary**
 
 - [CMake](https://cmake.org/)
+- [Ninja](https://ninja-build.org/)
 - A C++ compiler:
   - [clang](https://clang.llvm.org/)
   - [gcc](https://gcc.gnu.org/)
