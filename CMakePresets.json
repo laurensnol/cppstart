@@ -13,7 +13,7 @@
     { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF", "BUILD_DOCS": "ON" } },
 
     { "name": "clang-common", "hidden": true, "inherits": "unixlike-common", "cacheVariables": { "CMAKE_C_COMPILER": "clang", "CMAKE_CXX_COMPILER": "clang++" } },
-    { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "COMPILER_FLAGS": "-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;-Werror;" } },
+    { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "COMPILER_FLAGS": "-Werror;-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;" } },
     { "name": "clang-debug-no-tools", "displayName": "Debug Wihout Tools (clang)", "description": "Debug configuration without tools using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "ENABLE_TOOLS": "OFF" } },
     { "name": "clang-release", "displayName": "Release (clang)", "description": "Release configuration using clang.", "inherits": ["release-common", "clang-common"], "cacheVariables": { "COMPILER_FLAGS": "-O3;" } },
     { "name": "clang-coverage", "displayName": "Coverage (clang)", "description": "Coverage configuration using clang.", "inherits": ["coverage-common", "clang-common"], "cacheVariables": { "COVERAGE_OPTIONS": "-fprofile-instr-generate;-fcoverage-mapping;", "COVERAGE_LIBRARIES": "-fprofile-instr-generate;" } },
