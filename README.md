@@ -32,6 +32,8 @@ documentation and more.
 - A C++ compiler:
   - [clang](https://clang.llvm.org/)
   - [gcc](https://gcc.gnu.org/)
+  - [MSVC](https://visualstudio.microsoft.com/vs/features/cplusplus/)
+  - [MinGW](https://www.mingw-w64.org/)
 
 **Optional (but recommended)**
 
@@ -52,8 +54,7 @@ Click the `Use this template` button at the top of this page and enter a
 repository name. Then, wait for the GitHub Actions to finish.
 
 *Note that this will mark your repository as* 
-`generated from laurensnol/cppstart` *which, as of December 2023 can **not** be
-removed.*
+`generated from laurensnol/cppstart` *which can **not** be removed.*
 
 ### Cloning
 

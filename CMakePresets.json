@@ -30,12 +30,6 @@
     { "name": "msvc-release", "displayName": "Release (msvc)", "description": "Release configuration using msvc.", "inherits": ["release-common", "msvc-common"], "cacheVariables": { "COMPILER_FLAGS": "" } },
     { "name": "msvc-coverage", "displayName": "Coverage (msvc)", "description": "Coverage configuration using msvc.", "inherits": ["coverage-common", "msvc-common"], "cacheVariables": { "COVERAGE_OPTIONS": "", "COVERAGE_LIBRARIES": "" } },
     
-    { "name": "clang-cl-common", "hidden": true, "inherits": "windows-common", "cacheVariables": { "CMAKE_C_COMPILER": "clang-cl", "CMAKE_CXX_COMPILER": "clang-cl" } },
-    { "name": "clang-cl-debug", "displayName": "Debug (clang-cl)", "description": "Debug configuration using clang-cl.", "inherits": ["debug-common", "clang-cl-common"], "cacheVariables": { "COMPILER_FLAGS": "" } },
-    { "name": "clang-cl-debug-no-tools", "displayName": "Debug Wihout Tools (clang-cl)", "description": "Debug configuration without tools using clang-cl.", "inherits": ["debug-common", "clang-cl-common"], "cacheVariables": { "ENABLE_TOOLS": "OFF" } },
-    { "name": "clang-cl-release", "displayName": "Release (clang-cl)", "description": "Release configuration using clang-cl.", "inherits": ["release-common", "clang-cl-common"], "cacheVariables": { "COMPILER_FLAGS": "" } },
-    { "name": "clang-cl-coverage", "displayName": "Coverage (clang-cl)", "description": "Coverage configuration using clang-cl.", "inherits": ["coverage-common", "clang-cl-common"], "cacheVariables": { "COVERAGE_OPTIONS": "", "COVERAGE_LIBRARIES": "" } },
-
     { "name": "mingw-common", "hidden": true, "inherits": "windows-common", "cacheVariables": { "CMAKE_C_COMPILER": "gcc", "CMAKE_CXX_COMPILER": "g++" } },
     { "name": "mingw-debug", "displayName": "Debug (mingw)", "description": "Debug configuration using mingw.", "inherits": ["debug-common", "mingw-common"], "cacheVariables": { "COMPILER_FLAGS": "" } },
     { "name": "mingw-debug-no-tools", "displayName": "Debug Wihout Tools (mingw)", "description": "Debug configuration without tools using mingw.", "inherits": ["debug-common", "mingw-common"], "cacheVariables": { "ENABLE_TOOLS": "OFF" } },
@@ -61,13 +55,11 @@
     { "name": "lib-gcc-release", "hidden": true, "inherits": ["unixlike-common", "release-common", "lib-common"], "configurePreset": "gcc-release" },
     { "name": "lib-msvc-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "lib-common"], "configurePreset": "msvc-debug" },
     { "name": "lib-msvc-release", "hidden": true, "inherits": ["windows-common", "release-common", "lib-common"], "configurePreset": "msvc-release" },
-    { "name": "lib-clang-cl-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "lib-common"], "configurePreset": "clang-cl-debug" },
-    { "name": "lib-clang-cl-release", "hidden": true, "inherits": ["windows-common", "release-common", "lib-common"], "configurePreset": "clang-cl-release" },
     { "name": "lib-mingw-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "lib-common"], "configurePreset": "mingw-debug" },
     { "name": "lib-mingw-release", "hidden": true, "inherits": ["windows-common", "release-common", "lib-common"], "configurePreset": "mingw-release" },
 
-    { "name": "lib-debug", "displayName": "Library Debug Build", "description": "Build the library with debug configuration.", "inherits": ["lib-clang-debug", "lib-gcc-debug", "lib-msvc-debug", "lib-clang-cl-debug", "lib-mingw-debug"], "condition": { "type": "const", "value": true } },
-    { "name": "lib-release", "displayName": "Library Release Build", "description": "Build the library with release configuration.", "inherits": ["lib-clang-release", "lib-gcc-release", "lib-msvc-release", "lib-clang-cl-release", "lib-mingw-release"], "condition": { "type": "const", "value": true } },
+    { "name": "lib-debug", "displayName": "Library Debug Build", "description": "Build the library with debug configuration.", "inherits": ["lib-clang-debug", "lib-gcc-debug", "lib-msvc-debug", "lib-mingw-debug"], "condition": { "type": "const", "value": true } },
+    { "name": "lib-release", "displayName": "Library Release Build", "description": "Build the library with release configuration.", "inherits": ["lib-clang-release", "lib-gcc-release", "lib-msvc-release", "lib-mingw-release"], "condition": { "type": "const", "value": true } },
 
     { "name": "example-common", "hidden": true, "targets": ["example"] },
     { "name": "example-clang-debug", "hidden": true, "inherits": ["unixlike-common", "debug-common", "example-common"], "configurePreset": "clang-debug" },
@@ -76,13 +68,11 @@
     { "name": "example-gcc-release", "hidden": true, "inherits": ["unixlike-common", "release-common", "example-common"], "configurePreset": "gcc-release" },
     { "name": "example-msvc-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "example-common"], "configurePreset": "msvc-debug" },
     { "name": "example-msvc-release", "hidden": true, "inherits": ["windows-common", "release-common", "example-common"], "configurePreset": "msvc-release" },
-    { "name": "example-clang-cl-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "example-common"], "configurePreset": "clang-cl-debug" },
-    { "name": "example-clang-cl-release", "hidden": true, "inherits": ["windows-common", "release-common", "example-common"], "configurePreset": "clang-cl-release" },
     { "name": "example-mingw-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "example-common"], "configurePreset": "mingw-debug" },
     { "name": "example-mingw-release", "hidden": true, "inherits": ["windows-common", "release-common", "example-common"], "configurePreset": "mingw-release" },
 
-    { "name": "example-debug", "displayName": "Example Debug Build", "description": "Build the example with debug configuration.", "inherits": ["example-clang-debug", "example-gcc-debug", "example-msvc-debug", "example-clang-cl-debug", "example-mingw-debug"], "condition": { "type": "const", "value": true } },
-    { "name": "example-release", "displayName": "Example Release Build", "description": "Build the example with release configuration.", "inherits": ["example-clang-release", "example-gcc-release", "example-msvc-release", "example-clang-cl-release", "example-mingw-release"], "condition": { "type": "const", "value": true } },
+    { "name": "example-debug", "displayName": "Example Debug Build", "description": "Build the example with debug configuration.", "inherits": ["example-clang-debug", "example-gcc-debug", "example-msvc-debug", "example-mingw-debug"], "condition": { "type": "const", "value": true } },
+    { "name": "example-release", "displayName": "Example Release Build", "description": "Build the example with release configuration.", "inherits": ["example-clang-release", "example-gcc-release", "example-msvc-release", "example-mingw-release"], "condition": { "type": "const", "value": true } },
 
     { "name": "tests-common", "hidden": true, "targets": ["tests"] },
     { "name": "tests-clang-debug", "hidden": true, "inherits": ["unixlike-common", "debug-common", "tests-common"], "configurePreset": "clang-debug" },
@@ -94,16 +84,13 @@
     { "name": "tests-msvc-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "tests-common"], "configurePreset": "msvc-debug" },
     { "name": "tests-msvc-release", "hidden": true, "inherits": ["windows-common", "release-common", "tests-common"], "configurePreset": "msvc-release" },
     { "name": "tests-msvc-coverage", "hidden": true, "inherits": ["windows-common", "coverage-common", "tests-common"], "configurePreset": "msvc-coverage" },
-    { "name": "tests-clang-cl-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "tests-common"], "configurePreset": "clang-cl-debug" },
-    { "name": "tests-clang-cl-release", "hidden": true, "inherits": ["windows-common", "release-common", "tests-common"], "configurePreset": "clang-cl-release" },
-    { "name": "tests-clang-cl-coverage", "hidden": true, "inherits": ["windows-common", "coverage-common", "tests-common"], "configurePreset": "clang-cl-coverage" },
     { "name": "tests-mingw-debug", "hidden": true, "inherits": ["windows-common", "debug-common", "tests-common"], "configurePreset": "mingw-debug" },
     { "name": "tests-mingw-release", "hidden": true, "inherits": ["windows-common", "release-common", "tests-common"], "configurePreset": "mingw-release" },
     { "name": "tests-mingw-coverage", "hidden": true, "inherits": ["windows-common", "coverage-common", "tests-common"], "configurePreset": "mingw-coverage" },
 
-    { "name": "tests-debug", "displayName": "Tests Debug Build", "description": "Build the tests with debug configuration.", "inherits": ["tests-clang-debug", "tests-gcc-debug", "tests-msvc-debug", "tests-clang-cl-debug", "tests-mingw-debug"], "condition": { "type": "const", "value": true } },
-    { "name": "tests-release", "displayName": "Tests Release Build", "description": "Build the tests with release configuration.", "inherits": ["tests-clang-release", "tests-gcc-release", "tests-gcc-release", "tests-msvc-release", "tests-clang-cl-release", "tests-mingw-release"], "condition": { "type": "const", "value": true } },
-    { "name": "tests-coverage", "displayName": "Tests Coverage Build", "description": "Build the tests with coverage configuration.", "inherits": ["tests-clang-coverage", "tests-gcc-coverage", "tests-gcc-coverage", "tests-msvc-coverage", "tests-clang-cl-coverage", "tests-mingw-coverage"], "condition": { "type": "const", "value": true } }
+    { "name": "tests-debug", "displayName": "Tests Debug Build", "description": "Build the tests with debug configuration.", "inherits": ["tests-clang-debug", "tests-gcc-debug", "tests-msvc-debug", "tests-mingw-debug"], "condition": { "type": "const", "value": true } },
+    { "name": "tests-release", "displayName": "Tests Release Build", "description": "Build the tests with release configuration.", "inherits": ["tests-clang-release", "tests-gcc-release", "tests-gcc-release", "tests-msvc-release", "tests-mingw-release"], "condition": { "type": "const", "value": true } },
+    { "name": "tests-coverage", "displayName": "Tests Coverage Build", "description": "Build the tests with coverage configuration.", "inherits": ["tests-clang-coverage", "tests-gcc-coverage", "tests-gcc-coverage", "tests-msvc-coverage", "tests-mingw-coverage"], "condition": { "type": "const", "value": true } }
   ],
 
   "testPresets": [
@@ -120,15 +107,12 @@
     { "name": "all-msvc-debug", "hidden": true, "inherits": "windows-common", "configurePreset": "msvc-debug" },
     { "name": "all-msvc-release", "hidden": true, "inherits": "windows-common", "configurePreset": "msvc-release" },
     { "name": "all-msvc-coverage", "hidden": true, "inherits": "windows-common", "configurePreset": "msvc-coverage" },
-    { "name": "all-clang-cl-debug", "hidden": true, "inherits": "windows-common", "configurePreset": "clang-cl-debug" },
-    { "name": "all-clang-cl-release", "hidden": true, "inherits": "windows-common", "configurePreset": "clang-cl-release" },
-    { "name": "all-clang-cl-coverage", "hidden": true, "inherits": "windows-common", "configurePreset": "clang-cl-coverage" },
     { "name": "all-mingw-debug", "hidden": true, "inherits": "windows-common", "configurePreset": "mingw-debug" },
     { "name": "all-mingw-release", "hidden": true, "inherits": "windows-common", "configurePreset": "mingw-release" },
     { "name": "all-mingw-coverage", "hidden": true, "inherits": "windows-common", "configurePreset": "mingw-coverage" },
 
-    { "name": "all-debug", "displayName": "Run All Tests", "description": "Run all tests with debug configuration.", "inherits": ["all-clang-debug", "all-gcc-debug", "all-msvc-debug", "all-clang-cl-debug", "all-mingw-debug"] },
-    { "name": "all-coverage", "displayName": "Run All Tests", "description": "Run all tests with coverage configuration.", "inherits": ["all-clang-coverage", "all-gcc-coverage", "all-msvc-debug", "all-clang-cl-debug", "all-mingw-debug"] },
-    { "name": "all-release", "displayName": "Run All Tests", "description": "Run all tests with release configuration.", "inherits": ["all-clang-release", "all-gcc-release", "all-msvc-debug", "all-clang-cl-debug", "all-mingw-debug"] }
+    { "name": "all-debug", "displayName": "Run All Tests", "description": "Run all tests with debug configuration.", "inherits": ["all-clang-debug", "all-gcc-debug", "all-msvc-debug", "all-mingw-debug"], "condition": { "type": "const", "value": true } },
+    { "name": "all-coverage", "displayName": "Run All Tests", "description": "Run all tests with coverage configuration.", "inherits": ["all-clang-coverage", "all-gcc-coverage", "all-msvc-debug", "all-mingw-debug"], "condition": { "type": "const", "value": true } },
+    { "name": "all-release", "displayName": "Run All Tests", "description": "Run all tests with release configuration.", "inherits": ["all-clang-release", "all-gcc-release", "all-msvc-debug", "all-mingw-debug"], "condition": { "type": "const", "value": true } }
   ]
 }
