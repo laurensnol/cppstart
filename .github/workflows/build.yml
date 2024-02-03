@@ -45,6 +45,14 @@ jobs:
         run: |
           cmake --preset "${{matrix.compiler}}-${{matrix.config}}"
 
-      - name: Build
+      - name: Unix: Build
+        if: runner.os != "Windows"
+        run: |
+          cmake --build --preset "example-${{matrix.config}}"
+
+      - name: Windows: Build
+        if: runner.os == "Windows"
+        uses: msys2/setup-msys2@v2
+        shell: msys2 {0}
         run: |
           cmake --build --preset "example-${{matrix.config}}"
