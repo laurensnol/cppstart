@@ -34,13 +34,18 @@ target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILER_FLAGS}${COVERAGE_OPTIO
 target_link_libraries(${PROJECT_NAME} PRIVATE ${COVERAGE_LIBRARIES})
 
 # Create a symlink for compile_commands.json to be found by clangd.
-if (CMAKE_EXPORT_COMPILE_COMMANDS)
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
   message(STATUS "Creating symlink for compile_commands.json")
 
-  file(CREATE_LINK
-    "${CMAKE_BINARY_DIR}/compile_commands.json"
-    "${CMAKE_SOURCE_DIR}/build/compile_commands.json"
-    SYMBOLIC)
+  if(WIN32)
+    message(WARNING
+      "Creating a symlink for compile_commands.json is not supported on Windows\nclangd might not work as expected")
+  else()
+    file(CREATE_LINK
+      "${CMAKE_BINARY_DIR}/compile_commands.json"
+      "${CMAKE_SOURCE_DIR}/build/compile_commands.json"
+      SYMBOLIC)
+  endif()
 endif()
 
 if(ENABLE_TOOLS)
