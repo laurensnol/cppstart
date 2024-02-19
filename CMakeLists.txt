@@ -58,7 +58,8 @@ if(ENABLE_TOOLS)
     list(APPEND CLANG_TIDY_PROPERTIES
       ${CLANG_TIDY_PROGRAM}
       "-p=${PROJECT_BINARY_DIR}"
-      "-header-filter=.*")
+      "-header-filter=.*"
+      "--warnings-as-errors=*")
   else()
     message(WARNING "clang-tidy not found")
   endif()
