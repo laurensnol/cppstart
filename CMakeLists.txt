@@ -35,12 +35,13 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${COVERAGE_LIBRARIES})
 
 # Create a symlink for compile_commands.json to be found by clangd.
 if(CMAKE_EXPORT_COMPILE_COMMANDS)
-  message(STATUS "Creating symlink for compile_commands.json")
-
   if(WIN32)
     message(WARNING
-      "Creating a symlink for compile_commands.json is not supported on Windows\nclangd might not work as expected")
+      "Skipped creation of symlink for compile_commands.json\n"
+      "Please copy compile_commands.json manually for clangd to work as expected")
   else()
+    message(STATUS "Creating symlink for compile_commands.json")
+
     file(CREATE_LINK
       "${CMAKE_BINARY_DIR}/compile_commands.json"
       "${CMAKE_SOURCE_DIR}/build/compile_commands.json"
@@ -87,7 +88,7 @@ if(ENABLE_TOOLS)
     list(APPEND IWYU_PROPERTIES
       ${IWYU_PROGRAM})
   else()
-    message(STATUS "include-what-you-use not found")
+    message(WARNING "include-what-you-use not found")
   endif()
 
   set(CCACHE_PROPERTIES "")
@@ -96,7 +97,7 @@ if(ENABLE_TOOLS)
     list(APPEND CCACHE_PROPERTIES
       ${CCACHE_PROGRAM})
   else()
-    message(STATUS "Ccache not found")
+    message(WARNING "Ccache not found")
   endif()
 
   set_target_properties(${PROJECT_NAME} example PROPERTIES
