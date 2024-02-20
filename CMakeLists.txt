@@ -8,25 +8,28 @@ project(
 
 include("cmake/PreventInSourceBuild.cmake")
 
-# Since building documentation doesn't require building any targets, we can
-# immediately return if BUILD_DOCS is ON
-if(BUILD_DOCS)
-  add_subdirectory(docs)
-  return()
-endif()
-
-# Only include tests if top level
 if(PROJECT_IS_TOP_LEVEL)
-  include(FetchContent)
+  # Since building documentation doesn't require building any targets, we can
+  # immediately return if BUILD_DOCS is ON
+  if(BUILD_DOCS)
+    add_subdirectory(docs)
+    return()
+  endif()
 
+  # Only include tests if top level
   include(CTest)
-  add_subdirectory(test)
+  if(MODERN_CMAKE_BUILD_TESTING AND BUILD_TESTING)
+    add_subdirectory(test)
+  endif()
 endif()
+
+include(FetchContent)
 
 add_subdirectory(src ${PROJECT_NAME})
 add_subdirectory(example)
 
 # Apply compiler flags and coverage libraries
+target_compile_options(example PRIVATE ${COMPILER_FLAGS})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILER_FLAGS}${COVERAGE_OPTIONS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${COVERAGE_LIBRARIES})
 
