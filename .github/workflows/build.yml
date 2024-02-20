@@ -37,6 +37,12 @@ jobs:
         with:
           os: ${{ matrix.os }}
 
+      - name: Fix MacOS gcc/g++ Compiler
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: |
+          export gcc=$(which gcc-13)
+          export g++=$(which g++-13)
+
       - name: Dependencies
         uses: aminya/setup-cpp@v1
         with:
@@ -48,9 +54,7 @@ jobs:
           ccache: true
 
       - name: Configure
-        run: |
-          cmake --preset '${{matrix.compiler}}-${{matrix.config}}'
+        run: cmake --preset '${{matrix.compiler}}-${{matrix.config}}'
 
       - name: Build
-        run: |
-          cmake --build --preset 'example-${{matrix.config}}'
+        run: cmake --build --preset 'example-${{matrix.config}}'
