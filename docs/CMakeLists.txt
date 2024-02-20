@@ -6,6 +6,7 @@ if(Doxygen_FOUND)
   doxygen_add_docs(docs ${PROJECT_NAME}
     WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/include")
 else()
-  message(FATAL_ERROR "Doxygen not found")
+  message(WARNING
+    "Doxygen not found\n"
+    "Documentation cannot be built")
 endif()
-

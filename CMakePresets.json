@@ -1,7 +1,7 @@
 {
   "version": 6,
   "configurePresets": [
-    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_GENERATOR": "Ninja", "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "BUILD_DOCS": "OFF", "COMPILER_FLAGS": null, "COVERAGE_OPTIONS": null, "COVERAGE_LIBRARIES": null } },
+    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_GENERATOR": "Ninja", "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "ENABLE_TOOLS": "OFF", "COMPILER_FLAGS": null, "COVERAGE_OPTIONS": null, "COVERAGE_LIBRARIES": null } },
 
     { "name": "unixlike-common", "hidden": true, "inherits": "common", "condition": { "type": "inList", "string": "${hostSystemName}", "list": ["Linux", "Darwin"] } },
     { "name": "windows-common", "hidden": true, "inherits": "common", "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" } },
@@ -10,7 +10,7 @@
     { "name": "release-common", "inherits": "common", "hidden": true, "binaryDir": "build/release", "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" } },
     { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage" },
 
-    { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF", "BUILD_DOCS": "ON" } },
+    { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF" } },
 
     { "name": "clang-common", "hidden": true, "inherits": "unixlike-common", "cacheVariables": { "CMAKE_C_COMPILER": "clang", "CMAKE_CXX_COMPILER": "clang++" } },
     { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"], "cacheVariables": { "COMPILER_FLAGS": "-Werror;-Wall;-Wextra;-Wshadow;-Wconversion;-Wpedantic;-Wold-style-cast;-Wcast-align;-Wunused;-Woverloaded-virtual;-Wconversion;-Wsign-conversion;-Wdouble-promotion;-Wformat=2;-Wimplicit-fallthrough;" } },
