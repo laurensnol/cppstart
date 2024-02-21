@@ -13,14 +13,20 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         config: [debug, release]
-        compiler: [clang-16, gcc-13, msvc]
+        compiler: [clang, gcc, msvc]
         exclude:
           - os: ubuntu-latest
             compiler: msvc
           - os: macos-latest
             compiler: msvc
           - os: windows-latest
-            compiler: clang-16
+            compiler: clang
+
+          # Temporarily exluding due to GCC complaining about unknown warning
+          # options (even when using GNU gcc/g++, not Apple's clang)
+          - os: macos-latest
+            config: debug
+            compiler: gcc
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -41,12 +47,13 @@ jobs:
           cppcheck: true
           ccache: true
 
-      - name: Configure (MacOS/GCC)
-        if: ${{ matrix.os == 'macos-latest' && matrix.compiler == 'gcc' }}
-        run: cmake --preset '${{matrix.compiler}}-${{matrix.config}}' -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13
+      # See: Line 25
+      # - name: Configure (MacOS/GCC)
+      #   if: ${{ matrix.os == 'macos-latest' && matrix.compiler == 'gcc' }}
+      #   run: cmake --preset '${{matrix.compiler}}-${{matrix.config}}' -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13
 
       - name: Configure
-        if: ${{ !(matrix.os == 'macos-latest' && matrix.compiler == 'gcc') }}
+        # if: ${{ !(matrix.os == 'macos-latest' && matrix.compiler == 'gcc') }}
         run: cmake --preset '${{matrix.compiler}}-${{matrix.config}}'
 
       - name: Build
