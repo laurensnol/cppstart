@@ -13,20 +13,14 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         config: [debug, release]
-        compiler: [clang, gcc, msvc, mingw]
+        compiler: [clang, gcc, msvc]
         exclude:
           - os: ubuntu-latest
             compiler: msvc
-          - os: ubuntu-latest
-            compiler: mingw
           - os: macos-latest
             compiler: msvc
-          - os: macos-latest
-            compiler: mingw
           - os: windows-latest
             compiler: clang
-          - os: windows-latest
-            compiler: gcc
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -49,9 +43,7 @@ jobs:
 
       - name: Configure (MacOS/GCC)
         if: ${{ matrix.os == 'macos-latest' && matrix.compiler == 'gcc' }}
-        run: |
-          brew install gcc
-          cmake --preset '${{matrix.compiler}}-${{matrix.config}}' -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13
+        run: cmake --preset '${{matrix.compiler}}-${{matrix.config}}' -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13
 
       - name: Configure
         if: ${{ !(matrix.os == 'macos-latest' && matrix.compiler == 'gcc') }}
