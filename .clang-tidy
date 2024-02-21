@@ -10,5 +10,9 @@ Checks:
   - "modernize-*"
   - "performance-*"
   - "readability-*"
+
+  # Disabled due to false positives with std::cout on Windows with GCC
+  # See: https://github.com/llvm/llvm-project/issues?q=is%3Aissue+is%3Aopen+bugprone-exception-escape
+  - "-bugprone-exception-escape"
 ExtraArgs:
   - "-Wno-unknown-warning-option"
