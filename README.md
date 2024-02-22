@@ -33,9 +33,8 @@ documentation and more.
 - [Ninja](https://ninja-build.org/)
 - A C++ compiler:
   - [clang](https://clang.llvm.org/)
-  - [gcc](https://gcc.gnu.org/)
+  - [gcc](https://gcc.gnu.org/) (on Windows, see: https://www.msys2.org/)
   - [MSVC](https://visualstudio.microsoft.com/vs/features/cplusplus/)
-  - [MinGW](https://www.mingw-w64.org/)
 
 **Optional (but recommended)**
 
@@ -65,14 +64,14 @@ This method will not create a `generated from laurensnol/cppstart` tag.
 simplifies the renaming process.
 
 First, clone cppstart locally into a directory of your choice:
-`git clone https://github.com/laurensnol/cppstart PROJECT_NAME`. Inside the new
-directory, remove the `.git` directory: `rm -rf .git`. You may now run the
+`git clone https://github.com/laurensnol/cppstart <project_name>`. Inside the
+new directory, remove the `.git` directory: `rm -rf .git`. You may now run the
 rename script using
-`python scripts/rename.py PROJECT_NAME [DESCRIPTION] [HOMEPAGE] [-k]`, which
+`python rename.py <project_name> <description> <homepage> <-k>`, which
 will automatically rename all relevant occurrences of `cppstart` to
-`PROJECT_NAME`. You can optionally specify a description and a homepage (ensure
-to specify these as strings, i.e. sorrounded by quotes). Adding `-k` will
-prevent the script from deleting itself after running.
+project_name. You can optionally specify a description and a homepage (ensure to
+specify these as strings, i.e. sorrounded by quotes). Adding `-k` will prevent
+the script from deleting itself after running.
 
 After the script is finished, create a new Git repository: `git init`, stage the
 changes with `git add .` and commit them: `git commit -m "initial commit"`.
@@ -93,24 +92,24 @@ for configuring, building and testing.*
 Before building any target(s), the project has to be configured using any of the
 available presets, which can be listed with `cmake --list-presets`.
 
-To configure, run `cmake --preset [PRESET NAME]`.
+To configure, run `cmake --preset <name>`.
 
 ### Building
 
 After configuring the project, you can build one or more targets by using a
 preset listed by `cmake --build --list-presets` with
-`cmake --build --preset [PRESET NAME]`.
+`cmake --build --preset <name>`.
 
 **Note that some presets rely on specific configure presets. E.g. building**
-`lib-debug` **requires a** `*-debug(-no-tools)` **configuration to exist**.
+`lib-debug` **requires a** `<compiler>-debug(-no-tools)` **configuration**.
 
 ### Testing
 
 Building and running tests is possible with any configuration preset but
-requires any `tests-*` build preset to be built.
+requires any `tests-<configuration>` build preset to be built.
 
-Running tests is then possible by using `ctest --preset [PRESET NAME]` and any
-test preset listed by `ctest --list-presets`
+Running tests is then possible by using `ctest --preset <name>` with any test
+preset listed by `ctest --list-presets`
 
 ### Documentation
 
