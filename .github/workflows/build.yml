@@ -11,20 +11,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-22.04, macos-12, windows-2022]
         config: [debug, release]
         compiler: [clang-15, gcc-12, msvc]
         exclude:
-          - os: ubuntu-latest
+          - os: ubuntu-22.04
             compiler: msvc
-          - os: macos-latest
+          - os: macos-12
             compiler: msvc
-          - os: windows-latest
+          - os: windows-2022
             compiler: clang-15
 
           # Temporarily exluding due to GCC complaining about unknown warning
           # options (when using GNU gcc/g++, not Apple's clang)
-          - os: macos-latest
+          - os: macos-12
             config: debug
             compiler: gcc-12
     runs-on: ${{ matrix.os }}
