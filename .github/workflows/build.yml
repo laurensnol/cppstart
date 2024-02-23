@@ -13,20 +13,20 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         config: [debug, release]
-        compiler: [clang, gcc, msvc]
+        compiler: [clang-15, gcc-12, msvc]
         exclude:
           - os: ubuntu-latest
             compiler: msvc
           - os: macos-latest
             compiler: msvc
           - os: windows-latest
-            compiler: clang
+            compiler: clang-15
 
           # Temporarily exluding due to GCC complaining about unknown warning
-          # options (even when using GNU gcc/g++, not Apple's clang)
+          # options (when using GNU gcc/g++, not Apple's clang)
           - os: macos-latest
             config: debug
-            compiler: gcc
+            compiler: gcc-12
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -47,14 +47,9 @@ jobs:
           cppcheck: true
           ccache: true
 
-      # See: Line 25
-      # - name: Configure (MacOS/GCC)
-      #   if: ${{ matrix.os == 'macos-latest' && matrix.compiler == 'gcc' }}
-      #   run: cmake --preset '${{matrix.compiler}}-${{matrix.config}}' -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13
-
       - name: Configure
-        # if: ${{ !(matrix.os == 'macos-latest' && matrix.compiler == 'gcc') }}
-        run: cmake --preset '${{matrix.compiler}}-${{matrix.config}}'
+        shell: bash
+        run: cmake --preset $(echo ${{matrix.compiler}} | sed 's/-[0-9]*//')-${{matrix.config}}
 
       - name: Build
-        run: cmake --build --preset 'example-${{matrix.config}}'
+        run: cmake --build --preset example-${{matrix.config}}
