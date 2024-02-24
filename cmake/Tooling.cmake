@@ -54,11 +54,13 @@ function(cppstart_enable_tooling)
   endif()
 
   foreach(target ${ARGN})
-    set_target_properties(${target} PROPERTIES
-      CXX_CLANG_TIDY           "${CPPSTART_CLANG_TIDY_PROPERTIES}"
-      CXX_CPPCHECK             "${CPPSTART_CPPCHECK_PROPERTIES}"
-      CXX_INCLUDE_WHAT_YOU_USE "${CPPSTART_IWYU_PROPERTIES}"
-      CXX_COMPILER_LAUNCHER    "${CPPSTART_CCACHE_PROPERTIES}")
+    if(TARGET ${target})
+      set_target_properties(${target} PROPERTIES
+        CXX_CLANG_TIDY           "${CPPSTART_CLANG_TIDY_PROPERTIES}"
+        CXX_CPPCHECK             "${CPPSTART_CPPCHECK_PROPERTIES}"
+        CXX_INCLUDE_WHAT_YOU_USE "${CPPSTART_IWYU_PROPERTIES}"
+        CXX_COMPILER_LAUNCHER    "${CPPSTART_CCACHE_PROPERTIES}")
+    endif()
   endforeach()
 endfunction()
 
