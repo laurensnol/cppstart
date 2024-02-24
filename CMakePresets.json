@@ -1,7 +1,7 @@
 {
   "version": 6,
   "configurePresets": [
-    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_GENERATOR": "Ninja", "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "CPPSTART_BUILD_DOCS": "OFF", "CPPSTART_BUILD_TESTS": "ON", "CPPSTART_ENABLE_TOOLS": "OFF", "CPPSTART_ENABLE_COVERAGE": "OFF" } },
+    { "name": "common", "hidden": true, "cacheVariables": { "CMAKE_GENERATOR": "Ninja", "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "CPPSTART_BUILD_EXAMPLE": "ON", "CPPSTART_BUILD_DOCS": "OFF", "CPPSTART_BUILD_TESTS": "ON", "CPPSTART_ENABLE_TOOLS": "OFF", "CPPSTART_ENABLE_COVERAGE": "OFF" } },
 
     { "name": "unixlike-common", "hidden": true, "inherits": "common", "condition": { "type": "inList", "string": "${hostSystemName}", "list": ["Linux", "Darwin"] } },
     { "name": "windows-common", "hidden": true, "inherits": "common", "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" } },
@@ -9,7 +9,7 @@
     { "name": "debug-common", "inherits": "common", "hidden": true, "binaryDir": "build/debug", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "CPPSTART_ENABLE_TOOLS": "ON" } },
     { "name": "debug-no-tools-common", "inherits": "debug-common", "hidden": true, "cacheVariables": { "CPPSTART_ENABLE_TOOLS": "OFF" } },
     { "name": "release-common", "inherits": "common", "hidden": true, "binaryDir": "build/release", "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" } },
-    { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "CPPSTART_ENABLE_COVERAGE": "ON", "CPPSTART_BUILD_TESTS": "ON" } },
+    { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "CPPSTART_BUILD_TESTS": "ON", "CPPSTART_ENABLE_COVERAGE": "ON" } },
 
     { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF", "CPPSTART_BUILD_DOCS": "ON" } },
 
