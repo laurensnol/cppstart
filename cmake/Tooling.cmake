@@ -6,7 +6,7 @@ function(cppstart_enable_tooling)
   if(CLANG_TIDY_PROGRAM)
     list(APPEND CPPSTART_CLANG_TIDY_PROPERTIES
       ${CLANG_TIDY_PROGRAM}
-      "-p=${PROJECT_BINARY_DIR}"
+      "-p=${CMAKE_CURRENT_BINARY_DIR}"
       "-header-filter=.*"
       "--warnings-as-errors=*")
     message(STATUS "Enabled clang-tidy")

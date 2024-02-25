@@ -5,7 +5,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Catch2)
 
 add_executable(tests some_test.cpp)
-target_link_libraries(tests PRIVATE ${PROJECT_NAME} Catch2::Catch2WithMain)
+target_link_libraries(tests PRIVATE cppstart Catch2::Catch2WithMain)
 
 include(Catch)
 catch_discover_tests(tests)
