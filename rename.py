@@ -2,108 +2,83 @@ import argparse
 import os
 import re
 
-# See: https://cmake.org/cmake/help/latest/policy/CMP0037.html
+ROOT_DIR = os.path.dirname(__file__)
+INCLUDE_DIR = os.path.join(ROOT_DIR, "include")
+README_PATH = os.path.join(ROOT_DIR, "README.md")
+DEFAULT_PROJECT_NAME = "cppstart"
+FILES = [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    os.path.join("cmake", "CompilerOptions.cmake"),
+    os.path.join("cmake", "Coverage.cmake"),
+    os.path.join("cmake", "Sanitizers.cmake"),
+    os.path.join("cmake", "Tooling.cmake"),
+    os.path.join("docs", "CMakeLists.txt"),
+    os.path.join("example", "CMakeLists.txt"),
+    os.path.join("example", "main.cpp"),
+    os.path.join("src", "CMakeLists.txt"),
+    os.path.join("src", "some.cpp"),
+    os.path.join("test", "CMakeLists.txt"),
+    os.path.join("test", "some_test.cpp"),
+]
+
 def is_valid(s: str) -> bool:
+    # See: https://cmake.org/cmake/help/latest/policy/CMP0037.html
     pattern = re.compile(r"[^a-zA-Z0-9_\.\+\-]")
-    return pattern.search(s) is not None
+    return pattern.search(s) is None
+
+def replace_project_name(file: str, new: str) -> None:
+    with open(file, "r") as f:
+        content = f.read()
+        content = content.replace(DEFAULT_PROJECT_NAME, new.lower())
+        content = content.replace(DEFAULT_PROJECT_NAME.upper(), new.upper())
+
+    with open(file, "w") as f:
+        f.write(content)
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        usage="%(prog)s NAME [DESCRIPTION] [HOMEPAGE] [-k]",
+        usage="%(prog)s [-k] NAME",
         description="""Renames all occurrences of \"cppstart\" to the specified
         name. Optionally sets a description and homepage."""
     )
 
-    parser.add_argument(
-        "name",
-        type=str,
-        help="name of the project"
-    )
-
-    parser.add_argument(
-        "description",
-        type=str,
-        nargs="?",
-        default="",
-        help="description of the project"
-    )
-
-    parser.add_argument(
-        "homepage",
-        type=str,
-        nargs="?",
-        default="",
-        help="homepage of the project"
-    )
-
-    parser.add_argument(
-        "-k",
-        "--keep",
-        action="store_true",
-        help="do not delete the script after running"
-    )
-
+    parser.add_argument("-k", "--keep", action="store_true")
+    parser.add_argument("name", type=str)
     args = parser.parse_args()
 
-    if is_valid(args.name):
+    if not is_valid(args.name):
         print("Error: Invalid project name. Project names set by this script " \
-              "are limited to current CMake policies. (See: "\
-              "https://cmake.org/cmake/help/latest/policy/CMP0037.html).\n" \
-              "Allowed characters are: alphanumeric characters, underscores " \
-              "(_), dot (.), plus (+) and minus (-). If you wish to use the " \
-              "name provided and are sure that it is a valid name, please " \
+              "are limited to current CMake policies. (See: "                  \
+              "https://cmake.org/cmake/help/latest/policy/CMP0037.html).\n"    \
+              "Allowed characters are: alphanumeric characters, underscores "  \
+              "(_), dot (.), plus (+) and minus (-). If you wish to use the "  \
+              "name provided and are sure that it is a valid name, please "    \
               "set it manually.")
         return
 
-    root_dir = os.path.dirname(__file__)
+    print(f"Changing occurrences of cppstart/CPPSTART to {args.name}/" \
+          f"{args.name.upper()}... ")
+    for file in FILES:
+        path = os.path.join(ROOT_DIR, file)
+        print(f"Updating {path}...")
+        replace_project_name(path, args.name)
 
-    print("Renaming include directory...")
+    print("Renaming include directory... ")
     os.rename(
-        os.path.join(root_dir, "include", "cppstart"),
-        os.path.join(root_dir, "include", args.name)
+        os.path.join(INCLUDE_DIR, DEFAULT_PROJECT_NAME),
+        os.path.join(INCLUDE_DIR, args.name)
     )
 
-    files = [
-        os.path.join("src", "some.cpp"),
-        os.path.join("example", "main.cpp"),
-        os.path.join("test", "some_test.cpp"),
-        "CMakePresets.json"
-    ]
-
-    for file in files:
-        print(f"Updating {file}...")
-
-        path = os.path.join(root_dir, file)
-        with open(path, "r") as file:
-            content = file.read()
-
-        content = content.replace("cppstart", args.name)
-
-        with open(path, "w") as file:
-            if content != "":
-                file.write(content)
-
-    cmake_path = os.path.join(root_dir, "CMakeLists.txt")
-    with open(cmake_path, "r") as file:
-        content = file.read()
-        content = content \
-            .replace("cppstart template project.", args.description) \
-            .replace("https://github.com/laurensnol/cppstart", args.homepage) \
-            .replace("cppstart", args.name)
-
-    with open(cmake_path, "w") as file:
-        file.write(content)
-
-    readme_path = os.path.join(root_dir, "README.md")
-    with open(readme_path, "w") as file:
-        print("Clearing README...")
-        file.write(f"# {args.name}\n{args.description}")
+    print("Clearing README.md...")
+    with open(README_PATH, "w") as f:
+        f.write(f"# {args.name}\n")
 
     if not args.keep:
         print("Deleting script...")
         os.remove(__file__)
-
-    print("Done.")
+    else:
+        print("Skipped deleting script.")
 
 if __name__ == "__main__":
     main()

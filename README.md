@@ -60,18 +60,15 @@ repository name. Then, wait for the GitHub Actions to finish.
 ### Cloning
 
 This method will not create a `generated from laurensnol/cppstart` tag.
-[Python](https://www.python.org/) is highly recommended to be installed as it
+[Python](https://www.python.org/) is *highly* recommended to be installed as it
 simplifies the renaming process.
 
 First, clone cppstart locally into a directory of your choice:
 `git clone https://github.com/laurensnol/cppstart <project_name>`. Inside the
 new directory, remove the `.git` directory: `rm -rf .git`. You may now run the
-rename script using
-`python rename.py <project_name> <description> <homepage> <-k>`, which
-will automatically rename all relevant occurrences of `cppstart` to
-project_name. You can optionally specify a description and a homepage (ensure to
-specify these as strings, i.e. sorrounded by quotes). Adding `-k` will prevent
-the script from deleting itself after running.
+rename script using `python rename.py [-k] NAME`, which will automatically
+rename all relevant occurrences of `cppstart` to `NAME` and clear the README.
+Adding `-k` will prevent the script from deleting itself after running.
 
 After the script is finished, create a new Git repository: `git init`, stage the
 changes with `git add .` and commit them: `git commit -m "initial commit"`.
