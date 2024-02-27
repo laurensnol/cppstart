@@ -58,17 +58,23 @@ def main() -> None:
               "set it manually.")
         return
 
-    print(f"Changing occurrences of cppstart/CPPSTART to {args.name}/" \
-          f"{args.name.upper()}... ")
+    # Sanitize the project name to be safely used in CMake files and directories
+    sanitized_project_name = args.name \
+            .replace(".", "_")         \
+            .replace("+", "_")         \
+            .replace("-", "_")
+
+    print(f"Changing occurrences of cppstart/CPPSTART to " \
+          f"{sanitized_project_name}/{sanitized_project_name.upper()}... ")
     for file in FILES:
         path = os.path.join(ROOT_DIR, file)
         print(f"Updating {path}...")
-        replace_project_name(path, args.name)
+        replace_project_name(path, sanitized_project_name)
 
     print("Renaming include directory... ")
     os.rename(
         os.path.join(INCLUDE_DIR, DEFAULT_PROJECT_NAME),
-        os.path.join(INCLUDE_DIR, args.name)
+        os.path.join(INCLUDE_DIR, sanitized_project_name)
     )
 
     print("Clearing README.md...")
