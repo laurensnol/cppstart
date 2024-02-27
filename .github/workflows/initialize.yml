@@ -1,0 +1,37 @@
+name: Initialize
+on:
+  create:
+permissions:
+  contents: write
+
+jobs:
+  initialize-repository:
+    name: Initialize Repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rename
+        run: python3 rename.py "${{ github.event.repository.name }}"
+
+      - name: Dependencies
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: gcc-12
+          cmake: true
+          ninja: true
+      
+      - name: Test
+        run: |
+          cmake --preset gcc-debug-no-tools -DCMAKE_C_COMPILER=gcc-12 -DCMAKE_CXX_COMPILER=g++-12
+          cmake --build --preset example-debug
+          ./build/debug/example/example
+          rm -rf build
+
+      - name: Finish
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: -A
+          default_author: github_actions
+          message: "Initialized repository"

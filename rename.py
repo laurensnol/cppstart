@@ -5,6 +5,7 @@ import re
 ROOT_DIR = os.path.dirname(__file__)
 INCLUDE_DIR = os.path.join(ROOT_DIR, "include")
 README_PATH = os.path.join(ROOT_DIR, "README.md")
+INIT_PATH = os.path.join(ROOT_DIR, ".github", "workflows", "initialize.yml")
 DEFAULT_PROJECT_NAME = "cppstart"
 FILES = [
     "CMakeLists.txt",
@@ -75,10 +76,11 @@ def main() -> None:
         f.write(f"# {args.name}\n")
 
     if not args.keep:
-        print("Deleting script...")
+        print("Deleting script and initialize workflow...")
         os.remove(__file__)
+        os.remove(INIT_PATH)
     else:
-        print("Skipped deleting script.")
+        print("Skipped deleting script and initialize workflow.")
 
 if __name__ == "__main__":
     main()

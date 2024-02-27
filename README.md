@@ -52,7 +52,7 @@ There are two ways to use this repository as a template for a new C++ project.
 ### GitHub Template
 
 Click the `Use this template` button at the top of this page and enter a
-repository name. Then, wait for the GitHub Actions to finish.
+repository name. Then, wait for the "Initialize" GitHub Action to finish.
 
 *Note that this will mark your repository as* 
 `generated from laurensnol/cppstart` *which can **not** be removed.*
@@ -68,7 +68,10 @@ First, clone cppstart locally into a directory of your choice:
 new directory, remove the `.git` directory: `rm -rf .git`. You may now run the
 rename script using `python rename.py [-k] NAME`, which will automatically
 rename all relevant occurrences of `cppstart` to `NAME` and clear the README.
-Adding `-k` will prevent the script from deleting itself after running.
+Adding `-k` will prevent the script from deleting itself and the 
+`.github/workflows/initialize.yml` workflow after running. *(This workflow is 
+only used when using the method described in [GitHub Template](#github-template)
+and can be safely deleted)*
 
 After the script is finished, create a new Git repository: `git init`, stage the
 changes with `git add .` and commit them: `git commit -m "initial commit"`.
