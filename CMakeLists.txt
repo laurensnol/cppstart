@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 project(cppstart
   DESCRIPTION "cppstart template project."
-  HOMEPAGE_URL "https://github.com/laurensnol/cppstart"
-  LANGUAGES C CXX)
+  HOMEPAGE_URL "https://github.com/laurensnol/cppstart")
 
 option(CPPSTART_BUILD_EXAMPLE   "Build example for cppstart"               OFF)
 option(CPPSTART_BUILD_DOCS      "Build documentation for cppstart"         OFF)
