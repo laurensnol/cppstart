@@ -21,13 +21,13 @@
 
     { "name": "gcc-common", "hidden": true, "inherits": "common", "cacheVariables": { "CMAKE_C_COMPILER": "gcc", "CMAKE_CXX_COMPILER": "g++" } },
     { "name": "gcc-debug", "displayName": "Debug (gcc)", "description": "Debug configuration using gcc.", "inherits": ["debug-common", "gcc-common"] },
-    { "name": "gcc-debug-no-tools", "displayName": "Debug Wihout Tools (gcc)", "description": "Debug configuration without tools using gcc.", "inherits": ["debug-common", "gcc-common"] },
+    { "name": "gcc-debug-no-tools", "displayName": "Debug Without Tools (gcc)", "description": "Debug configuration without tools using gcc.", "inherits": ["debug-no-tools-common", "gcc-common"] },
     { "name": "gcc-release", "displayName": "Release (gcc)", "description": "Release configuration using gcc.", "inherits": ["release-common", "gcc-common"] },
     { "name": "gcc-coverage", "displayName": "Coverage (gcc)", "description": "Coverage configuration using gcc.", "inherits": ["coverage-common", "gcc-common"] },
 
     { "name": "msvc-common", "hidden": true, "inherits": "windows-common", "cacheVariables": { "CMAKE_C_COMPILER": "cl", "CMAKE_CXX_COMPILER": "cl" } },
     { "name": "msvc-debug", "displayName": "Debug (msvc)", "description": "Debug configuration using msvc.", "inherits": ["debug-common", "msvc-common"] },
-    { "name": "msvc-debug-no-tools", "displayName": "Debug Wihout Tools (msvc)", "description": "Debug configuration without tools using msvc.", "inherits": ["debug-common", "msvc-common"] },
+    { "name": "msvc-debug-no-tools", "displayName": "Debug Wihout Tools (msvc)", "description": "Debug configuration without tools using msvc.", "inherits": ["debug-no-tools-common", "msvc-common"] },
     { "name": "msvc-release", "displayName": "Release (msvc)", "description": "Release configuration using msvc.", "inherits": ["release-common", "msvc-common"] }
   ],
 
