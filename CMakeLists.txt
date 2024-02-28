@@ -42,10 +42,10 @@ endif()
 # Testing
 
 if(CPPSTART_BUILD_TESTS)
-  include(CTest)
+  include(CTest) # will set BUILD_TESTING to ON
 endif()
 
-if(BUILD_TESTING) # will be defined by "include(CTest)"
+if(BUILD_TESTING)
   include(FetchContent)
   add_subdirectory(test)
 
