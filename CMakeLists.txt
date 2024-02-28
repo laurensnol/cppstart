@@ -6,7 +6,6 @@ option(CPPSTART_BUILD_DOCS      "Build documentation for cppstart"         OFF)
 option(CPPSTART_BUILD_TESTS     "Build tests for cppstart"                 OFF)
 option(CPPSTART_ENABLE_TOOLS    "Enable tools and sanitizers for cppstart" OFF)
 option(CPPSTART_ENABLE_COVERAGE "Add coverage options for cppstart"        OFF)
-option(CPPSTART_INSTALL         "Install cppstart"                         OFF)
 
 include("cmake/PreventInSourceBuild.cmake")
 
