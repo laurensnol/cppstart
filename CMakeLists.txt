@@ -54,8 +54,3 @@ if(BUILD_TESTING) # will be defined by "include(CTest)"
     cppstart_enable_coverage(cppstart)
   endif()
 endif()
-
-# Installation & packaging
-
-if(CPPSTART_INSTALL)
-endif()
