@@ -15,6 +15,11 @@ endif()
 
 # Subdirectories
 
+set(CPPSTART_HEADERS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/cppstart")
+set(CPPSTART_SOURCES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(CPPSTART_EXAMPLE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/example")
+set(CPPSTART_TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test")
+
 add_subdirectory(src cppstart)
 
 if(CPPSTART_BUILD_EXAMPLE)

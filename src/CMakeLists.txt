@@ -1,4 +1,5 @@
-file(GLOB CPPSTART_HEADERS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/cppstart/*.hpp")
-add_library(cppstart some.cpp ${CPPSTART_HEADERS})
+file(GLOB_RECURSE CPPSTART_HEADERS CONFIGURE_DEPENDS "${CPPSTART_HEADERS_DIR}/*.hpp")
+file(GLOB_RECURSE CPPSTART_SOURCES CONFIGURE_DEPENDS "${CPPSTART_SOURCES_DIR}/*.cpp")
+add_library(cppstart ${CPPSTART_HEADERS} ${CPPSTART_SOURCES})
 target_include_directories(cppstart PUBLIC ../include)
 target_compile_features(cppstart PUBLIC cxx_std_20)

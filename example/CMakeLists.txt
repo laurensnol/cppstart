@@ -1,3 +1,5 @@
-add_executable(example main.cpp)
+file(GLOB_RECURSE CPPSTART_EXAMPLE_HEADERS CONFIGURE_DEPENDS "${CPPSTART_EXAMPLE_DIR}/*.hpp")
+file(GLOB_RECURSE CPPSTART_EXAMPLE_SOURCES CONFIGURE_DEPENDS "${CPPSTART_EXAMPLE_DIR}/*.cpp")
+add_executable(example ${CPPSTART_EXAMPLE_HEADERS} ${CPPSTART_EXAMPLE_SOURCES})
 target_compile_features(example PRIVATE cxx_std_20)
 target_link_libraries(example PRIVATE cppstart)

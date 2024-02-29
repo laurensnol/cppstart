@@ -1,4 +1,5 @@
-add_executable(tests some_test.cpp)
+file(GLOB_RECURSE CPPSTART_TESTS CONFIGURE_DEPENDS "${CPPSTART_TESTS_DIR}/*.cpp")
+add_executable(tests ${CPPSTART_TESTS})
 
 if(CPPSTART_ENABLE_TOOLS)
   include("${PROJECT_SOURCE_DIR}/cmake/Sanitizers.cmake")
