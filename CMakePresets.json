@@ -11,7 +11,7 @@
     { "name": "release-common", "inherits": "common", "hidden": true, "binaryDir": "build/release", "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" } },
     { "name": "coverage-common", "inherits": "common", "hidden": true, "binaryDir": "build/coverage", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "CPPSTART_BUILD_TESTS": "ON", "CPPSTART_ENABLE_COVERAGE": "ON" } },
 
-    { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF", "CPPSTART_BUILD_EXAMPLE": "OFF", "CPPSTART_BUILD_DOCS": "ON" } },
+    { "name": "docs", "displayName": "Documentation (Doxygen)", "description": "Documentation configuration.", "inherits": "common", "binaryDir": "build/docs", "cacheVariables": { "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF", "CPPSTART_BUILD_EXAMPLE": "OFF", "CPPSTART_BUILD_DOCS": "ON", "CPPSTART_BUILD_TESTS": "OFF" } },
 
     { "name": "clang-common", "hidden": true, "inherits": "unixlike-common", "cacheVariables": { "CMAKE_C_COMPILER": "clang", "CMAKE_CXX_COMPILER": "clang++" } },
     { "name": "clang-debug", "displayName": "Debug (clang)", "description": "Debug configuration using clang.", "inherits": ["debug-common", "clang-common"] },
